@@ -1,0 +1,16 @@
+{
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "{{namespace}}\\{{name}}\\": "src/"
+        },
+        "classmap": ["database/migrations/"]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "{{namespace}}\\{{name}}\\Tests\\": "tests/"
+        }
+    }
+}
