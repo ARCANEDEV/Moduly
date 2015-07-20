@@ -1,0 +1,38 @@
+{
+    "name": "arcanedev/moduly",
+    "description": "Modules manager for ARCANESOFT",
+    "keywords": ["arcanesoft", "modules"],
+    "homepage": "https://github.com/ARCANEDEV/Moduly",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ARCANEDEV",
+            "email": "arcanedev.maroc@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/database": "5.1.*",
+        "illuminate/support": "5.1.*",
+        "illuminate/filesystem": "5.1.*",
+        "illuminate/config": "5.1.*",
+        "illuminate/routing": "5.1.*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "~3.1",
+        "phpunit/phpunit": "~4.7",
+        "phpunit/phpcov": "~2.0",
+        "mockery/mockery": "~0.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Arcanedev\\Moduly\\": "src/"
+        },
+        "files": ["helpers.php"]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Arcanedev\\Moduly\\Tests\\": "tests/"
+        }
+    }
+}
