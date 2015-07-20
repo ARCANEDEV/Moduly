@@ -31,11 +31,11 @@ interface ModuleRepositoryInterface
     /**
      * Get path for the specified module.
      *
-     * @param  string $slug
+     * @param  string $module
      *
      * @return string
      */
-    public function getModulePath($slug);
+    public function getModulePath($module);
 
     /**
      * Get modules namespace.

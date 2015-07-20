@@ -180,13 +180,15 @@ class Moduly implements ModuleRepositoryInterface
     /**
     * Get path for the specified module.
     *
-    * @param  string  $slug
+    * @param  string  $module
      *
     * @return string
     */
-    public function getModulePath($slug)
+    public function getModulePath($module)
     {
-        return $this->repository->getModulePath($slug);
+        $module = str_slug($module);
+
+        return $this->repository->getModulePath($module);
     }
 
     /**

@@ -91,7 +91,6 @@ class ModuleMakeMigrationHandler extends Handler
         }
 
         $this->makeFile();
-
         $this->command->info("Created Module Migration: [$this->moduleName] " . $this->getFilename());
 
         chdir(app('path.base'));
