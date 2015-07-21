@@ -40,11 +40,10 @@ class EnableCommand extends Command
 
         if ($this->moduly()->isEnabled($module)) {
             $this->comment("Module [{$module}] is already enabled.");
-
-            return;
         }
-
-        $this->moduly()->enable($module);
-        $this->info("Module [{$module}] was enabled successfully.");
+        else {
+            $this->moduly()->enable($module);
+            $this->info("Module [{$module}] was enabled successfully.");
+        }
     }
 }

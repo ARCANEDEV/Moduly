@@ -2,9 +2,6 @@
 
 use Arcanedev\Moduly\Bases\Command;
 use Illuminate\Console\ConfirmableTrait;
-use Illuminate\Support\Str;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 
 /**
  * Class MigrateRefreshCommand
