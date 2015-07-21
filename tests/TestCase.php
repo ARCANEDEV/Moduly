@@ -2,6 +2,8 @@
 
 use Arcanedev\Moduly\ModulyServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 
 /**
  * Class TestCase
@@ -97,12 +99,45 @@ abstract class TestCase extends BaseTestCase
     /**
      * Get fixture module path
      *
-     * @param  string $name
+     * @param  string  $name
      *
      * @return string
      */
-    public function getFixtureModulePath($name)
+    protected function getFixtureModulePath($name)
     {
         return realpath(__DIR__ . '/fixture/modules/' . $name);
+    }
+
+    /**
+     * Create Module
+     *
+     * @param string  $name
+     */
+    protected function createModule($name)
+    {
+        $this->artisan('module:make', [
+            'module' => $name
+        ]);
+    }
+
+    /**
+     * Delete module folder
+     *
+     * @param string  $name
+     */
+    protected function deleteModule($name)
+    {
+        $dir   = $this->getFixtureModulePath($name);
+        $files = new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS),
+            RecursiveIteratorIterator::CHILD_FIRST
+        );
+
+        foreach ($files as $fileInfo) {
+            $todo = ($fileInfo->isDir() ? 'rmdir' : 'unlink');
+            $todo($fileInfo->getRealPath());
+        }
+
+        rmdir($dir);
     }
 }
