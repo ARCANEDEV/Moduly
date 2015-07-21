@@ -83,7 +83,7 @@ abstract class TestCase extends BaseTestCase
      */
     public function moduly()
     {
-        return $this->app['arcanedev.moduly'];
+        return $this->app[ModulyServiceProvider::MODULY_KEY];
     }
 
     /**

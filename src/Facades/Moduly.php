@@ -1,5 +1,6 @@
 <?php namespace Arcanedev\Moduly\Facades;
 
+use Arcanedev\Moduly\ModulyServiceProvider;
 use Illuminate\Support\Facades\Facade;
 
 /**
@@ -13,5 +14,5 @@ class Moduly extends Facade
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'arcanedev.moduly'; }
+    protected static function getFacadeAccessor() { return ModulyServiceProvider::MODULY_KEY; }
 }

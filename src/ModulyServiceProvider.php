@@ -4,7 +4,6 @@ use Arcanedev\Moduly\Contracts\ModuleRepositoryInterface;
 use Arcanedev\Moduly\Providers\CommandsServiceProvider;
 use Arcanedev\Moduly\Providers\MigrationServiceProvider;
 use Arcanedev\Moduly\Providers\RepositoryServiceProvider;
-use Arcanedev\Moduly\Repositories\Local\ModuleRepository;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,6 +13,12 @@ use Illuminate\Support\ServiceProvider;
  */
 class ModulyServiceProvider extends ServiceProvider
 {
+    /* ------------------------------------------------------------------------------------------------
+     |  Contants
+     | ------------------------------------------------------------------------------------------------
+     */
+    const MODULY_KEY = 'arcanedev.moduly';
+
     /* ------------------------------------------------------------------------------------------------
      |  Properties
      | ------------------------------------------------------------------------------------------------
@@ -56,7 +61,7 @@ class ModulyServiceProvider extends ServiceProvider
         $this->app->register(MigrationServiceProvider::class);
         $this->app->register(CommandsServiceProvider::class);
 
-        $this->app->singleton('arcanedev.moduly', function (Application $app) {
+        $this->app->singleton(self::MODULY_KEY, function (Application $app) {
             return new Moduly($app, $app->make(ModuleRepositoryInterface::class));
         });
     }
@@ -68,8 +73,6 @@ class ModulyServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return [
-            'arcanedev.moduly'
-        ];
+        return [self::MODULY_KEY];
     }
 }
