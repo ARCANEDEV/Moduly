@@ -1,4 +1,4 @@
-<?php namespace Arcanedev\Moduly\Repositories;
+<?php namespace Arcanedev\Moduly\Bases;
 
 use Arcanedev\Moduly\Contracts\ModuleRepositoryInterface;
 use Illuminate\Config\Repository as Config;
@@ -110,7 +110,8 @@ abstract class Repository implements ModuleRepositoryInterface
     /**
      * Get path of module JSON file.
      *
-     * @param  string $module
+     * @param  string  $module
+     *
      * @return string
      */
     protected function getManifestPath($module)
@@ -126,5 +127,15 @@ abstract class Repository implements ModuleRepositoryInterface
     public function getNamespace()
     {
         return $this->config->get('moduly.namespace');
+    }
+
+    /**
+     * Get ignored modules.
+     *
+     * @return string
+     */
+    public function getIgnored()
+    {
+        return $this->config->get('moduly.ignored', []);
     }
 }

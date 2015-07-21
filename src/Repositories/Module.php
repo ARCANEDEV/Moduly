@@ -1,13 +1,13 @@
-<?php namespace Arcanedev\Moduly\Repositories\Local;
+<?php namespace Arcanedev\Moduly\Repositories;
 
-use Arcanedev\Moduly\Repositories\Repository;
+use Arcanedev\Moduly\Bases\Repository;
 use Illuminate\Support\Collection;
 
 /**
- * Class ModuleRepository
+ * Class Module
  * @package Arcanedev\Moduly\Repositories\Local
  */
-class ModuleRepository extends Repository
+class Module extends Repository
 {
     /* ------------------------------------------------------------------------------------------------
      |  Main Functions
