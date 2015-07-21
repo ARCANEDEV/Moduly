@@ -33,15 +33,24 @@ class DisableCommand extends Command
      */
     public function handle()
     {
-        $module = $this->argument('module');
+        $module = $this->getModuleName();
 
-        if ( ! $this->moduly()->isEnabled($module)) {
-            $this->comment("Module [{$module}] is already disabled.");
-
-            return;
+        if ($this->moduly()->isEnabled($module)) {
+            $this->moduly()->disable($module);
+            $this->info("Module [{$module}] was disabled successfully.");
         }
+        else {
+            $this->comment("Module [{$module}] is already disabled.");
+        }
+    }
 
-        $this->moduly()->disable($module);
-        $this->info("Module [{$module}] was disabled successfully.");
+    /**
+     * Get module argument
+     *
+     * @return string
+     */
+    protected function getModuleName()
+    {
+        return (string) $this->argument('module');
     }
 }
