@@ -36,13 +36,7 @@ class Modules extends Repository
     */
     public function slugs()
     {
-        $slugs = collect();
-
-        $this->all()->each(function($item) use ($slugs) {
-            $slugs->push($item['slug']);
-        });
-
-        return $slugs;
+        return $this->all()->keys();
     }
 
     /**
@@ -90,7 +84,7 @@ class Modules extends Repository
      */
     public function exists($slug)
     {
-        return $this->slugs()->contains(strtolower($slug));
+        return $this->slugs()->contains(str_slug($slug));
     }
 
     /**
@@ -108,7 +102,7 @@ class Modules extends Repository
      *
      * @param  string  $slug
      *
-     * @return Collection|null
+     * @return Module|null
      */
     public function getProperties($slug)
     {
@@ -116,20 +110,10 @@ class Modules extends Repository
             return null;
         }
 
-        $path       = $this->getManifestPath($slug);
+        $path   = $this->getManifestPath($slug);
+        $module = new Module;
 
-        if ( ! $this->files->exists($path)) {
-            return collect();
-        }
-
-        $contents   = $this->files->get($path);
-        $collection = collect(json_decode($contents, true));
-
-        if ( ! $collection->has('order')) {
-            $collection->put('order', 9001);
-        }
-
-        return $collection;
+        return ! $this->files->exists($path) ? $module : $module->load($path);
     }
 
     /**
@@ -159,7 +143,7 @@ class Modules extends Repository
     {
         list($module, $key) = explode('::', $property);
 
-        $module  = strtolower($module);
+        $module  = str_slug($module);
         $content = $this->getProperties($module);
 
         if ($content->isEmpty()) {
