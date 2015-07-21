@@ -83,32 +83,33 @@ class MigrateCommand extends Command
 
         $this->prepareDatabase();
 
-        if ($this->argument('module') == 'all') {
-            $this->migrateAll();
+        $force = $this->getBooleanOption('force');
+
+        if ($this->getModuleName() == 'all') {
+            $this->migrateAll($force);
 
             return;
         }
 
-        $module = $this->module->getProperties($this->argument('module'));
+        $module = $this->module->getProperties($this->getModuleName());
 
-        if ( ! is_null($module)) {
-            if ($this->module->isEnabled($module['slug'])) {
-                $this->migrate($module['slug']);
-            }
-            elseif ($this->option('force')) {
-                $this->migrate($module['slug']);
-            }
+        if (is_null($module)) {
+            return;
+        }
+
+        if ($this->module->isEnabled($module['slug']) || $force) {
+            $this->migrate($module['slug']);
         }
     }
 
     /**
      * Run migrations for all modules.
+     *
+     * @param bool  $force
      */
-    private function migrateAll()
+    private function migrateAll($force = false)
     {
-        $modules = $this->option('force')
-            ? $this->module->all()
-            : $this->module->enabled();
+        $modules = $force ? $this->module->all() : $this->module->enabled();
 
         foreach ($modules as $module) {
             $this->migrate($module['slug']);
@@ -120,18 +121,20 @@ class MigrateCommand extends Command
      *
      * @param  string $slug
      */
-    protected function migrate($slug)
+    private function migrate($slug)
     {
         $moduleName = studly_case($slug);
 
         if ( ! $this->module->exists($moduleName)) {
             $this->error("Module [$moduleName] does not exist.");
+
+            return;
         }
 
-        $pretend = $this->option('pretend');
-        $path    = $this->getMigrationPath($slug);
-
-        $this->migrator->run($path, $pretend);
+        $this->migrator->run(
+            $this->getMigrationPath($slug),
+            $this->getBooleanOption('pretend')
+        );
 
         // Once the migrator has run we will grab the note output and send it out to
         // the console screen, since the migrator itself functions without having
@@ -145,8 +148,11 @@ class MigrateCommand extends Command
         // Finally, if the "seed" option has been given, we will re-run the database
         // seed task to re-populate the database, which is convenient when adding
         // a migration and a seed at the same time, as it is only this command.
-        if ($this->option('seed')) {
-            $this->call('module:seed', ['module' => $slug, '--force' => true]);
+        if ($this->getBooleanOption('seed')) {
+            $this->call('module:seed', [
+                'module' => $slug,
+                '--force' => true
+            ]);
         }
     }
 
@@ -159,9 +165,7 @@ class MigrateCommand extends Command
      */
     protected function getMigrationPath($slug)
     {
-        $path = $this->module->getModulePath($slug);
-
-        return $path . 'Database/Migrations/';
+        return $this->module->getModulePath($slug) . config('moduly.folders.migrations');
     }
 
     /* ------------------------------------------------------------------------------------------------
@@ -173,11 +177,13 @@ class MigrateCommand extends Command
      */
     private function prepareDatabase()
     {
-        $this->migrator->setConnection($this->option('database'));
+        if ($database = $this->getStringOption('database')) {
+            $this->migrator->setConnection($database);
+        }
 
         if ( ! $this->migrator->repositoryExists()) {
             $this->call('migrate:install', [
-                '--database' => $this->option('database'),
+                '--database' => $database,
             ]);
         }
     }

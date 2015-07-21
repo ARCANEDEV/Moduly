@@ -2,7 +2,6 @@
 
 use Arcanedev\Moduly\Bases\Command;
 use Arcanedev\Moduly\Handlers\ModuleMakeRequestHandler;
-use Symfony\Component\Console\Input\InputArgument;
 
 /**
  * Class MakeRequestCommand
@@ -53,14 +52,12 @@ class MakeRequestCommand extends Command
      */
     /**
      * Execute the console command.
-     *
-     * @return mixed
      */
     public function handle()
     {
         return $this->handler->fire(
-            $this, $this->argument('module'),
-            $this->argument('name')
+            $this, $this->getModuleName(),
+            $this->getStringArgument('name')
         );
     }
 }

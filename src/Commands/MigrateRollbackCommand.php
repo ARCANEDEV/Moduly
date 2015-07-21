@@ -60,16 +60,20 @@ class MigrateRollbackCommand extends Command
         $this->module = $module;
     }
 
+    /* ------------------------------------------------------------------------------------------------
+     |  Main Functions
+     | ------------------------------------------------------------------------------------------------
+     */
     /**
      * Execute the console command.
      */
-    public function fire()
+    public function handle()
     {
         if ( ! $this->confirmToProceed()) {
             return;
         }
 
-        $module = $this->argument('module');
+        $module = $this->getModuleName();
 
         if ($module) {
             $this->rollback($module);
@@ -79,10 +83,14 @@ class MigrateRollbackCommand extends Command
         }
     }
 
+    /* ------------------------------------------------------------------------------------------------
+     |  Other Functions
+     | ------------------------------------------------------------------------------------------------
+     */
     /**
      * Run the migration rollback for all modules.
      */
-    public function rollbackAll()
+    private function rollbackAll()
     {
         foreach ($this->module->all() as $module) {
             $this->rollback($module['slug']);
@@ -94,13 +102,18 @@ class MigrateRollbackCommand extends Command
      *
      * @param  string  $slug
      */
-    protected function rollback($slug)
+    private function rollback($slug)
     {
         $this->requireMigrations(studly_case($slug));
+
+        $database = $this->getStringOption('database')
+            ? $this->getStringOption('database')
+            : null;
+
         $this->call('migrate:rollback', [
-            '--database' => $this->option('database'),
-            '--force'    => $this->option('force'),
-            '--pretend'  => $this->option('pretend'),
+            '--database' => $database,
+            '--force'    => $this->getBooleanOption('force'),
+            '--pretend'  => $this->getBooleanOption('pretend'),
         ]);
     }
 }

@@ -57,6 +57,6 @@ class MakeCommand extends Command
      */
     public function handle()
     {
-        $this->handler->fire($this, $this->argument('module'));
+        $this->handler->fire($this, $this->getModuleName());
     }
 }

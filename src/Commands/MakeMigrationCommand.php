@@ -44,6 +44,10 @@ class MakeMigrationCommand extends Command
         $this->handler = $handler;
     }
 
+    /* ------------------------------------------------------------------------------------------------
+     |  Main Functions
+     | ------------------------------------------------------------------------------------------------
+     */
     /**
      * Execute the console command.
      */
@@ -51,8 +55,8 @@ class MakeMigrationCommand extends Command
     {
         $this->handler->fire(
             $this,
-            $this->argument('module'),
-            $this->argument('table')
+            $this->getModuleName(),
+            $this->getStringArgument('table')
         );
     }
 }

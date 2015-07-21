@@ -47,31 +47,36 @@ class MigrateRefreshCommand extends Command
             return;
         }
 
-        $module     = $this->argument('module');
+        $module     = $this->getModuleName();
         $moduleName = studly_case($module);
+        $database   = $this->getStringOption('database') ?: null;
 
         $this->call('module:migrate-reset', [
             'module'     => $module,
-            '--database' => $this->option('database'),
-            '--force'    => $this->option('force'),
-            '--pretend'  => $this->option('pretend'),
+            '--database' => $database,
+            '--force'    => $this->getBooleanOption('force'),
+            '--pretend'  => $this->getBooleanOption('pretend'),
         ]);
 
         $this->call('module:migrate', [
             'module'     => $module,
-            '--database' => $this->option('database')
+            '--database' => $database
         ]);
 
         if ($this->needsSeeding()) {
-            $this->runSeeder($module, $this->option('database'));
+            $this->runSeeder($module, $database);
         }
 
         $this->info(isset($module)
             ? "Module [$moduleName] has been refreshed."
-            : "All modules have been refreshed."
+            : 'All modules have been refreshed.'
         );
     }
 
+    /* ------------------------------------------------------------------------------------------------
+     |  Other Functions
+     | ------------------------------------------------------------------------------------------------
+     */
     /**
      * Determine if the developer has requested database seeding.
      *
@@ -79,7 +84,7 @@ class MigrateRefreshCommand extends Command
      */
     protected function needsSeeding()
     {
-        return (bool) $this->option('seed');
+        return $this->getBooleanOption('seed');
     }
 
     /**
@@ -91,7 +96,7 @@ class MigrateRefreshCommand extends Command
     protected function runSeeder($module = null, $database = null)
     {
         $this->call('module:seed', [
-            'module'     => is_null($module) ? $this->argument('module') : $module,
+            'module'     => is_null($module) ? $this->getModuleName() : $module,
             '--database' => $database
         ]);
     }

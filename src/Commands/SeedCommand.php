@@ -61,68 +61,68 @@ class SeedCommand extends Command
     {
         $module     = $this->argument('module');
         $moduleName = studly_case($module);
+        $force      = $this->getBooleanOption('force');
 
         if (isset($module)) {
             if ( ! $this->module->exists($module)) {
                 $this->error("Module [$moduleName] does not exist.");
-
-                return;
             }
-
-            if (
-                $this->module->isEnabled($module) ||
-                $this->option('force')
-            ) {
-                $this->seed($module);
+            elseif ($this->module->isEnabled($module) || $force) {
+                $this->seed($module, $force);
             }
         }
         else {
-            $this->seedAll();
+            $this->seedAll($force);
         }
     }
 
+    /* ------------------------------------------------------------------------------------------------
+     |  Other Functions
+     | ------------------------------------------------------------------------------------------------
+     */
     /**
      * Seed all modules.
+     *
+     * @param bool  $force
      */
-    private function seedAll()
+    private function seedAll($force = false)
     {
-        $modules = $this->option('force')
-            ? $this->module->all()
-            : $this->module->enabled();
+        $modules = $force ? $this->module->all() : $this->module->enabled();
 
         foreach ($modules as $module) {
-            $this->seed($module['slug']);
+            $this->seed($module['slug'], $force);
         }
     }
 
     /**
      * Seed the specific module.
      *
-     * @param  string $module
-     *
-     * @return array
+     * @param  string  $module
+     * @param  bool    $force
      */
-    protected function seed($module)
+    protected function seed($module, $force = false)
     {
         $params     = [];
         $moduleName = studly_case($module);
         $namespace  = $this->module->getNamespace();
         $fullPath   = $namespace . $moduleName . '\\Seeds\\' . $moduleName . 'DatabaseSeeder';
 
-        if (class_exists($fullPath, false)) {
-            $params['--class'] = $this->option('class')
-                ? $this->option('class')
-                : $fullPath;
-
-            if ($option = $this->option('database')) {
-                $params['--database'] = $option;
-            }
-
-            if ($option = $this->option('force')) {
-                $params['--force'] = $option;
-            }
-
-            $this->call('db:seed', $params);
+        if ( ! class_exists($fullPath, false)) {
+            return;
         }
+
+        $params['--class'] = $this->getStringOption('class')
+            ? $this->getStringOption('class')
+            : $fullPath;
+
+        if ($this->getStringOption('database')) {
+            $params['--database'] = $this->getStringOption('database');
+        }
+
+        if ($force) {
+            $params['--force'] = $force;
+        }
+
+        $this->call('db:seed', $params);
     }
 }

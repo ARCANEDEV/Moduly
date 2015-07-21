@@ -89,31 +89,25 @@ class MigrateResetCommand extends Command
             return;
         }
 
-        $module = $this->argument('module');
+        $module = $this->getModuleName();
+        $force  = $this->getBooleanOption('force');
 
         if (empty($module)) {
-            $this->resetAll();
-
-            return;
+            $this->resetAll($force);
         }
-
-        if (
-            $this->module->isEnabled($module) ||
-            $this->option('force')
-        ) {
+        elseif ($this->module->isEnabled($module) || $force) {
             $this->reset($module);
         }
     }
 
     /**
      * Run the migration reset for all modules.
+     *
+     * @param bool  $force
      */
-    private function resetAll()
+    private function resetAll($force = false)
     {
-        $modules = $this->option('force')
-            ? $this->module->all()
-            : $this->module->enabled();
-
+        $modules = $force ? $this->module->all() : $this->module->enabled();
         $modules = $modules->reverse();
 
         foreach ($modules as $module) {
@@ -132,21 +126,22 @@ class MigrateResetCommand extends Command
      */
     protected function reset($slug)
     {
-        $this->migrator->setconnection($this->input->getOption('database'));
+        if ($this->getStringOption('database')) {
+            $this->migrator->setconnection($this->getStringOption('database'));
+        }
 
-        $pretend       = $this->input->getOption('pretend');
+        $pretend       = $this->getBooleanOption('pretend');
         $migrationPath = $this->getMigrationPath($slug);
         $migrations    = array_reverse($this->migrator->getMigrationFiles($migrationPath));
 
-        if (count($migrations) == 0) {
-            $this->error('Nothing to rollback.');
-
-            return;
+        if (count($migrations)) {
+            foreach ($migrations as $migration) {
+                $this->info('Migration: ' . $migration);
+                $this->runDown($slug, $migration, $pretend);
+            }
         }
-
-        foreach ($migrations as $migration) {
-            $this->info('Migration: ' . $migration);
-            $this->runDown($slug, $migration, $pretend);
+        else {
+            $this->error('Nothing to rollback.');
         }
     }
 
@@ -160,7 +155,7 @@ class MigrateResetCommand extends Command
     protected function runDown($slug, $migration, $pretend)
     {
         $migrationPath = $this->getMigrationPath($slug);
-        $file          = (string) $migrationPath . '/' . $migration . '.php';
+        $file          = $migrationPath . '/' . $migration . '.php';
         $classFile     = implode('_', array_slice(explode('_', str_replace('.php', '', $file)), 4));
         $class         = studly_case($classFile);
         $table         = $this->laravel['config']['database.migrations'];
@@ -187,16 +182,16 @@ class MigrateResetCommand extends Command
 
         $params['--path'] = $this->getMigrationPath($slug);
 
-        if ($option = $this->option('database')) {
-            $params['--database'] = $option;
+        if ($this->getStringOption('database')) {
+            $params['--database'] = $this->getStringOption('database');
         }
 
-        if ($option = $this->option('pretend')) {
-            $params['--pretend'] = $option;
+        if ($this->getBooleanOption('pretend')) {
+            $params['--pretend'] = true;
         }
 
-        if ($option = $this->option('seed')) {
-            $params['--seed'] = $option;
+        if ($this->getBooleanOption('seed')) {
+            $params['--seed'] = true;
         }
 
         return $params;

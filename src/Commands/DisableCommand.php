@@ -17,12 +17,12 @@ class DisableCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'module:disable {module}';
+    protected $signature    = 'module:disable {module}';
 
     /**
      * @var string $description The console command description.
      */
-    protected $description = 'Disable a module';
+    protected $description  = 'Disable a module';
 
     /* ------------------------------------------------------------------------------------------------
      |  Main Functions
@@ -42,15 +42,5 @@ class DisableCommand extends Command
         else {
             $this->comment("Module [{$module}] is already disabled.");
         }
-    }
-
-    /**
-     * Get module argument
-     *
-     * @return string
-     */
-    protected function getModuleName()
-    {
-        return (string) $this->argument('module');
     }
 }
