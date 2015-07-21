@@ -1,7 +1,7 @@
 <?php namespace Arcanedev\Moduly\Providers;
 
 use Arcanedev\Moduly\Contracts\ModuleRepositoryInterface;
-use Arcanedev\Moduly\Repositories\Module;
+use Arcanedev\Moduly\Repositories\Modules;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -44,7 +44,7 @@ class RepositoryServiceProvider extends ServiceProvider
 
         $namespace = ($driver === 'Custom')
             ? config('moduly.custom-driver')
-            : Module::class;
+            : Modules::class;
 
         $this->app->bind(ModuleRepositoryInterface::class, $namespace);
     }

@@ -4,10 +4,10 @@ use Arcanedev\Moduly\Bases\Repository;
 use Illuminate\Support\Collection;
 
 /**
- * Class Module
+ * Class Modules
  * @package Arcanedev\Moduly\Repositories\Local
  */
-class Module extends Repository
+class Modules extends Repository
 {
     /* ------------------------------------------------------------------------------------------------
      |  Main Functions

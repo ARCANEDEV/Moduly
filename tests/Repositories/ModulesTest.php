@@ -1,22 +1,22 @@
 <?php namespace Arcanedev\Moduly\Tests\Repositories;
 
-use Arcanedev\Moduly\Repositories\Module;
+use Arcanedev\Moduly\Repositories\Modules;
 use Arcanedev\Moduly\Tests\TestCase;
 use Illuminate\Config\Repository as Config;
 use Illuminate\Filesystem\Filesystem;
 
 /**
- * Class ModuleTest
+ * Class ModulesTest
  * @package Arcanedev\Moduly\Tests\Repositories
  */
-class ModuleTest extends TestCase
+class ModulesTest extends TestCase
 {
     /* ------------------------------------------------------------------------------------------------
      |  Properties
      | ------------------------------------------------------------------------------------------------
      */
-    /** @var Module */
-    protected $module;
+    /** @var Modules */
+    protected $modules;
 
     /**
      * @var Config
@@ -39,7 +39,7 @@ class ModuleTest extends TestCase
         $this->config = $this->app['config'];
         $this->files  = $this->app['files'];
 
-        $this->module = new Module(
+        $this->modules = new Modules(
             $this->config,
             $this->files
         );
@@ -49,7 +49,7 @@ class ModuleTest extends TestCase
     {
         parent::tearDown();
 
-        unset($this->module);
+        unset($this->modules);
     }
 
     /* ------------------------------------------------------------------------------------------------
@@ -59,9 +59,9 @@ class ModuleTest extends TestCase
     /** @test */
     public function it_can_be_instantiated()
     {
-        $this->assertInstanceOf(Module::class, $this->module);
-        $this->assertEquals(0, $this->module->count());
-        $this->assertCount(0, $this->module->all());
+        $this->assertInstanceOf(Modules::class, $this->modules);
+        $this->assertEquals(0, $this->modules->count());
+        $this->assertCount(0, $this->modules->all());
     }
 
     /** @test */
@@ -69,11 +69,11 @@ class ModuleTest extends TestCase
     {
         $path = $this->config->get('moduly.path');
 
-        $this->assertEquals($path, $this->module->getPath());
+        $this->assertEquals($path, $this->modules->getPath());
 
-        $this->module->setPath($path = __DIR__ . '/../fixture/modules');
+        $this->modules->setPath($path = __DIR__ . '/../fixture/modules');
 
-        $this->assertEquals($path, $this->module->getPath());
+        $this->assertEquals($path, $this->modules->getPath());
     }
 
     /** @test */
@@ -81,7 +81,7 @@ class ModuleTest extends TestCase
     {
         $this->assertEquals(
             $this->config->get('moduly.path') . "/{$this->moduleName}/",
-            $this->module->getModulePath($this->moduleName)
+            $this->modules->getModulePath($this->moduleName)
         );
     }
 
@@ -90,7 +90,7 @@ class ModuleTest extends TestCase
     {
         $this->assertEquals(
             $this->config->get('moduly.namespace'),
-            $this->module->getNamespace()
+            $this->modules->getNamespace()
         );
     }
 
@@ -99,7 +99,7 @@ class ModuleTest extends TestCase
     {
         $this->assertEquals(
             $this->config->get('moduly.ignored'),
-            $this->module->getIgnored()
+            $this->modules->getIgnored()
         );
     }
 
@@ -108,8 +108,27 @@ class ModuleTest extends TestCase
     {
         $this->createModule($this->moduleName);
 
-        $this->assertEquals(1, $this->module->count());
-        $this->assertCount(1, $this->module->all());
+        $modules = $this->modules->all();
+        $this->assertCount(1, $modules);
+        $this->assertEquals(1, $modules->count());
+
+        $this->deleteModule($this->moduleName);
+    }
+
+    /** @test */
+    public function it_can_get_one_module()
+    {
+        $this->createModule($this->moduleName);
+
+        $module = $this->modules->all()->first();
+        $name   = ucfirst($this->moduleName);
+
+        $this->assertEquals($name, $module['name']);
+        $this->assertEquals($this->moduleName, $module['slug']);
+        $this->assertTrue($module['enabled']);
+        $this->assertEquals("This is the description for the $name module.", $module['description']);
+        $this->assertEquals('1.0.0', $module['version']);
+        $this->assertEquals(9001, $module['order']);
 
         $this->deleteModule($this->moduleName);
     }
