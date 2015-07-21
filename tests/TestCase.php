@@ -45,7 +45,7 @@ abstract class TestCase extends BaseTestCase
     protected function getPackageAliases($app)
     {
         return [
-            'Moduly' => \Arcanedev\Moduly\Facades\Module::class
+            'Moduly' => \Arcanedev\Moduly\Facades\Moduly::class
         ];
     }
 
