@@ -106,7 +106,8 @@ class Module extends Repository
     /**
      * Get a module's properties.
      *
-     * @param  string $slug
+     * @param  string  $slug
+     *
      * @return Collection|null
      */
     public function getProperties($slug)
@@ -134,8 +135,8 @@ class Module extends Repository
     /**
      * Get a module property value.
      *
-     * @param  string $property
-     * @param  mixed  $default
+     * @param  string  $property
+     * @param  mixed   $default
      *
      * @return mixed
      */
@@ -198,7 +199,8 @@ class Module extends Repository
     /**
      * Check if specified module is enabled.
      *
-     * @param  string $slug
+     * @param  string  $slug
+     *
      * @return bool
      */
     public function isEnabled($slug)
@@ -209,7 +211,8 @@ class Module extends Repository
     /**
      * Check if specified module is disabled.
      *
-     * @param  string $slug
+     * @param  string  $slug
+     *
      * @return bool
      */
     public function isDisabled($slug)
@@ -220,7 +223,8 @@ class Module extends Repository
     /**
      * Enables the specified module.
      *
-     * @param  string $slug
+     * @param  string  $slug
+     *
      * @return bool
      */
     public function enable($slug)
@@ -231,7 +235,8 @@ class Module extends Repository
     /**
      * Disables the specified module.
      *
-     * @param  string $slug
+     * @param  string  $slug
+     *
      * @return bool
      */
     public function disable($slug)

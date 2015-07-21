@@ -60,6 +60,7 @@ class ModuleTest extends TestCase
     public function it_can_be_instantiated()
     {
         $this->assertInstanceOf(Module::class, $this->module);
+        $this->assertEquals(0, $this->module->count());
         $this->assertCount(0, $this->module->all());
     }
 
@@ -100,5 +101,16 @@ class ModuleTest extends TestCase
             $this->config->get('moduly.ignored'),
             $this->module->getIgnored()
         );
+    }
+
+    /** @test */
+    public function it_can_get_all_modules()
+    {
+        $this->createModule($this->moduleName);
+
+        $this->assertEquals(1, $this->module->count());
+        $this->assertCount(1, $this->module->all());
+
+        $this->deleteModule($this->moduleName);
     }
 }
