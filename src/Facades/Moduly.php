@@ -3,10 +3,10 @@
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class Module
+ * Class Moduly
  * @package Arcanedev\Moduly\Facades
  */
-class Module extends Facade
+class Moduly extends Facade
 {
     /**
      * Get the registered name of the component.
