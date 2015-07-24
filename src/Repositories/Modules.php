@@ -14,26 +14,28 @@ class Modules extends Repository
      | ------------------------------------------------------------------------------------------------
      */
     /**
-    * Get all modules.
-    *
-    * @return Collection
-    */
+     * Get all modules.
+     *
+     * @return Collection
+     */
     public function all()
     {
         $modules   = collect();
 
         $this->getAllBasenames()->each(function($module) use ($modules) {
-            $modules->put($module, $this->getProperties($module));
+            if ( ! in_array($module, config('moduly.ignored', []))) {
+                $modules->put($module, $this->getProperties($module));
+            }
         });
 
         return $modules->sortBy('order');
     }
 
     /**
-    * Get all module slugs.
-    *
-    * @return Collection
-    */
+     * Get all module slugs.
+     *
+     * @return Collection
+     */
     public function slugs()
     {
         return $this->all()->keys();
@@ -64,12 +66,12 @@ class Modules extends Repository
     }
 
     /**
-    * Sort modules by given key in ascending order.
-    *
-    * @param  string  $key
+     * Sort modules by given key in ascending order.
      *
-    * @return Collection
-    */
+     * @param  string  $key
+     *
+     * @return Collection
+     */
     public function sortByDesc($key)
     {
         return $this->all()->sortByDesc($key);
@@ -132,13 +134,13 @@ class Modules extends Repository
     }
 
     /**
-    * Set the given module property value.
-    *
-    * @param  string  $property
-    * @param  mixed   $value
+     * Set the given module property value.
      *
-    * @return bool
-    */
+     * @param  string  $property
+     * @param  mixed   $value
+     *
+     * @return bool
+     */
     public function setProperty($property, $value)
     {
         list($module, $key) = explode('::', $property);
@@ -155,9 +157,11 @@ class Modules extends Repository
         }
 
         $content[$key] = $value;
-        $content       = json_encode($content, JSON_PRETTY_PRINT);
 
-        return $this->files->put($this->getManifestPath($module), $content);
+        return $this->files->put(
+            $this->getManifestPath($module),
+            json_encode($content, JSON_PRETTY_PRINT)
+        );
     }
 
     /**
