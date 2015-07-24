@@ -59,7 +59,7 @@ class SeedCommand extends Command
      */
     public function handle()
     {
-        $module     = $this->argument('module');
+        $module     = $this->getModuleName();
         $moduleName = studly_case($module);
         $force      = $this->getBooleanOption('force');
 
