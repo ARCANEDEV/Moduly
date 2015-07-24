@@ -42,7 +42,7 @@ class ModuleMakeRequestHandler extends Handler
         $this->moduleName    = studly_case($slug);
         $this->className     = studly_case($class);
 
-        if ( ! $this->module->exists($this->moduleName)) {
+        if ( ! $this->moduly->exists($this->moduleName)) {
             $this->command->info("Module [$this->moduleName] does not exist.");
 
             return;
@@ -82,7 +82,7 @@ class ModuleMakeRequestHandler extends Handler
      */
     protected function getPath()
     {
-        $path = $this->module->getModulePath($this->moduleName);
+        $path = $this->moduly->getModulePath($this->moduleName);
 
         return $path . config('moduly.folders.requests');
     }
@@ -120,7 +120,7 @@ class ModuleMakeRequestHandler extends Handler
     {
         return str_replace(
             ['{{className}}', '{{moduleName}}', '{{namespace}}'],
-            [$this->className, $this->moduleName, $this->module->getNamespace()],
+            [$this->className, $this->moduleName, $this->moduly->getNamespace()],
             $content
         );
     }

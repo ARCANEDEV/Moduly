@@ -95,7 +95,7 @@ class ModuleMakeHandler extends Handler
         $this->setCommand($command);
         $this->setSlug($slug);
 
-        if ($this->module->exists($this->slug)) {
+        if ($this->moduly->exists($this->slug)) {
             $command->comment("Module [{$this->name}] already exists.");
 
             return;
@@ -133,8 +133,8 @@ class ModuleMakeHandler extends Handler
      */
     protected function generateFolders()
     {
-        if ( ! $this->finder->isDirectory($this->module->getPath())) {
-            $this->finder->makeDirectory($this->module->getPath());
+        if ( ! $this->finder->isDirectory($this->moduly->getPath())) {
+            $this->finder->makeDirectory($this->moduly->getPath());
         }
 
         $path = $this->getModulePath($this->slug);
@@ -207,8 +207,8 @@ class ModuleMakeHandler extends Handler
     protected function getModulePath($slug = null)
     {
         return $slug
-            ? $this->module->getModulePath($slug)
-            : $this->module->getPath();
+            ? $this->moduly->getModulePath($slug)
+            : $this->moduly->getPath();
     }
 
     /**
@@ -245,7 +245,7 @@ class ModuleMakeHandler extends Handler
     {
         return str_replace(
             ['{{slug}}', '{{name}}', '{{namespace}}'],
-            [$this->slug, $this->name, $this->module->getNamespace()],
+            [$this->slug, $this->name, $this->moduly->getNamespace()],
             $content
         );
     }

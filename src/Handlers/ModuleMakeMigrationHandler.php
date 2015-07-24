@@ -84,7 +84,7 @@ class ModuleMakeMigrationHandler extends Handler
         $this->setModuleName($module);
         $this->setTable($table);
 
-        if ( ! $this->module->exists($this->moduleName)) {
+        if ( ! $this->moduly->exists($this->moduleName)) {
             $this->command->info("Module [$this->moduleName] does not exist.");
 
             return;
@@ -131,7 +131,7 @@ class ModuleMakeMigrationHandler extends Handler
      */
     protected function getPath()
     {
-        $path = $this->module->getModulePath($this->moduleName);
+        $path = $this->moduly->getModulePath($this->moduleName);
 
         return $path . config('moduly.folders.migrations');
     }
