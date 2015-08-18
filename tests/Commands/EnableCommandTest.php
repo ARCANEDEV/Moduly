@@ -21,11 +21,6 @@ class EnableCommandTest extends CommandTestCase
         ]);
     }
 
-    public function tearDown()
-    {
-        parent::tearDown();
-    }
-
     /* ------------------------------------------------------------------------------------------------
      |  Test Functions
      | ------------------------------------------------------------------------------------------------
@@ -56,11 +51,16 @@ class EnableCommandTest extends CommandTestCase
         }
     }
 
-    /** @test */
+    /**
+     * @test
+     *
+     * @expectedException        \Arcanedev\Moduly\Exceptions\ModuleNotFound
+     * @expectedExceptionMessage Module not found [hello]
+     */
     public function it_cant_enable_not_found_module()
     {
         $this->artisan('module:enable', [
-            'module' => 'foo'
+            'module' => 'hello'
         ]);
     }
 }

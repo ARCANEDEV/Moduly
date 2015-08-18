@@ -3,6 +3,10 @@
 use Arcanedev\Moduly\Moduly;
 use Illuminate\Console\Command as IlluminateCommand;
 
+/**
+ * Class Command
+ * @package Arcanedev\Moduly\Bases
+ */
 abstract class Command extends IlluminateCommand
 {
     /* ------------------------------------------------------------------------------------------------

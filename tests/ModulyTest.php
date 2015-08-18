@@ -1,5 +1,6 @@
 <?php namespace Arcanedev\Moduly\Tests;
 
+use Arcanedev\Moduly\Entities\ModulesCollection;
 use Arcanedev\Moduly\Moduly;
 
 /**
@@ -43,5 +44,13 @@ class ModulyTest extends TestCase
     public function it_can_be_instantiated()
     {
         $this->assertInstanceOf(Moduly::class, $this->moduly);
+        $this->assertEquals('arcanedev.moduly', Moduly::KEY_NAME);
+    }
+
+    /** @test */
+    public function it_can_get_all_modules()
+    {
+        $modules = $this->moduly->all();
+        $this->assertInstanceOf(ModulesCollection::class, $modules);
     }
 }

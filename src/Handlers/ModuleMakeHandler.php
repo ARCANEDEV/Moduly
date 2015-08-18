@@ -77,7 +77,7 @@ class ModuleMakeHandler extends Handler
      */
     public function getFolders()
     {
-        return array_values(config('moduly.folders', []));
+        return array_values(config('moduly.modules.folders', []));
     }
 
     /* ------------------------------------------------------------------------------------------------
@@ -95,13 +95,12 @@ class ModuleMakeHandler extends Handler
         $this->setCommand($command);
         $this->setSlug($slug);
 
-        if ($this->moduly->exists($this->slug)) {
-            $command->comment("Module [{$this->name}] already exists.");
-
-            return;
+        if ( ! $this->moduly->exists($this->slug)) {
+            $this->generate($command);
         }
-
-        $this->generate($command);
+        else {
+            $command->comment("Module [{$this->name}] already exists.");
+        }
     }
 
     /**
@@ -133,11 +132,14 @@ class ModuleMakeHandler extends Handler
      */
     protected function generateFolders()
     {
-        if ( ! $this->finder->isDirectory($this->moduly->getPath())) {
-            $this->finder->makeDirectory($this->moduly->getPath());
+        $baseFolder = $this->moduly->getBasePath();
+
+        if ( ! $this->finder->isDirectory($baseFolder)) {
+            $this->finder->makeDirectory($baseFolder);
         }
 
         $path = $this->getModulePath($this->slug);
+
         $this->finder->makeDirectory($path);
 
         foreach ($this->getFolders() as $folder) {
@@ -208,7 +210,7 @@ class ModuleMakeHandler extends Handler
     {
         return $slug
             ? $this->moduly->getModulePath($slug)
-            : $this->moduly->getPath();
+            : $this->moduly->getBasePath();
     }
 
     /**
@@ -227,6 +229,7 @@ class ModuleMakeHandler extends Handler
      * Get stub content by key.
      *
      * @param  int $key
+     *
      * @return string
      */
     protected function getStubContent($key)
@@ -238,6 +241,8 @@ class ModuleMakeHandler extends Handler
 
     /**
      * Replace placeholder text with correct values.
+     *
+     * @param  string $content
      *
      * @return string
      */

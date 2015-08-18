@@ -111,7 +111,7 @@ class MigrateResetCommand extends Command
         $modules = $modules->reverse();
 
         foreach ($modules as $module) {
-            $this->reset($module['slug']);
+            $this->reset($module->name);
         }
     }
 
@@ -165,7 +165,8 @@ class MigrateResetCommand extends Command
         $instance = new $class;
         $instance->down();
 
-        $this->laravel['db']->table($table)
+        $this->laravel['db']
+            ->table($table)
             ->where('migration', $migration)
             ->delete();
     }

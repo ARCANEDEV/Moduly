@@ -15,7 +15,7 @@ abstract class CommandTestCase extends TestCase
         parent::setUp();
 
         $this->artisan('module:list');
-        $this->createModule($this->moduleName);
+        $this->makeModule($this->moduleName);
     }
 
     public function tearDown()
