@@ -35,6 +35,6 @@ trait MigrationTrait
      */
     protected function getMigrationPath($module)
     {
-        return moduly()->getModulePath($module) . config('moduly.folders.migrations');
+        return moduly()->getModulePath($module) . config('moduly.modules.folders.migrations');
     }
 }
