@@ -1,6 +1,7 @@
 <?php namespace Arcanedev\Moduly\Commands;
 
 use Arcanedev\Moduly\Bases\Command;
+use Arcanedev\Moduly\Entities\Module;
 use Arcanedev\Moduly\Moduly;
 use Illuminate\Support\Collection;
 
@@ -102,18 +103,18 @@ class ListCommand extends Command
     /**
      * Returns module manifest information.
      *
-     * @param  string $module
+     * @param  Module $module
      *
      * @return array
      */
-    protected function getModuleInformation($module)
+    protected function getModuleInformation(Module $module)
     {
+
         return [
-            '#'           => $module['order'],
-            'name'        => $module['name'],
-            'slug'        => $module['slug'],
-            'description' => $module['description'],
-            'status'      => ($module['enabled']) ? 'Enabled' : 'Disabled'
+            '#'           => $module->order,
+            'name'        => $module->name,
+            'description' => $module->description,
+            'status'      => $module->enabled ? 'Enabled' : 'Disabled'
         ];
     }
 }

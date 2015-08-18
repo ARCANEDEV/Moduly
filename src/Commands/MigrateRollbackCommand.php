@@ -93,7 +93,7 @@ class MigrateRollbackCommand extends Command
     private function rollbackAll()
     {
         foreach ($this->module->all() as $module) {
-            $this->rollback($module['slug']);
+            $this->rollback($module->name);
         }
     }
 

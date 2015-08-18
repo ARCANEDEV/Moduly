@@ -91,14 +91,15 @@ class MigrateCommand extends Command
             return;
         }
 
-        $module = $this->module->getProperties($this->getModuleName());
+
+        $module = $this->module->get($this->getModuleName());
 
         if (is_null($module)) {
             return;
         }
 
-        if ($this->module->isEnabled($module['slug']) || $force) {
-            $this->migrate($module['slug']);
+        if ($module->enabled || $force) {
+            $this->migrate($module->name);
         }
     }
 
@@ -112,7 +113,7 @@ class MigrateCommand extends Command
         $modules = $force ? $this->module->all() : $this->module->enabled();
 
         foreach ($modules as $module) {
-            $this->migrate($module['slug']);
+            $this->migrate($module->name);
         }
     }
 
