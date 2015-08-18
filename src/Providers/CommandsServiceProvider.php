@@ -14,8 +14,8 @@ use Arcanedev\Moduly\Commands\SeedCommand;
 use Arcanedev\Moduly\Handlers\ModuleMakeHandler;
 use Arcanedev\Moduly\Handlers\ModuleMakeMigrationHandler;
 use Arcanedev\Moduly\Handlers\ModuleMakeRequestHandler;
+use Arcanedev\Support\Laravel\ServiceProvider;
 use Closure;
-use Illuminate\Support\ServiceProvider;
 
 /**
  * Class CommandsServiceProvider
@@ -24,34 +24,30 @@ use Illuminate\Support\ServiceProvider;
 class CommandsServiceProvider extends ServiceProvider
 {
     /* ------------------------------------------------------------------------------------------------
+     |  Constants
+     | ------------------------------------------------------------------------------------------------
+     */
+    const COMMAND_KEY = 'module';
+
+    /* ------------------------------------------------------------------------------------------------
      |  Properties
      | ------------------------------------------------------------------------------------------------
      */
-    /**
-    * @var bool $defer Indicates if loading of the provider is deferred.
-    */
-    protected $defer    = false;
-
     protected $commands = [];
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
-     */
     /**
-     * Boot the service provider.
+     * Indicates if loading of the provider is deferred.
      *
-     * @return void
+     * @var bool
      */
-    public function boot()
-    {
-        //
-    }
+    protected $defer = true;
 
+    /* ------------------------------------------------------------------------------------------------
+    |  Main Functions
+    | ------------------------------------------------------------------------------------------------
+    */
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
@@ -214,8 +210,7 @@ class CommandsServiceProvider extends ServiceProvider
      */
     private function registerCommand($name, Closure $callback)
     {
-        $name = 'modules.' . $name;
-
+        $name = self::COMMAND_KEY . '.' . $name;
         $this->app->bind($name, $callback);
         $this->commands[] = $name;
 

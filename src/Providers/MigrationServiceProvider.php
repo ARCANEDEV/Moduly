@@ -1,8 +1,8 @@
 <?php namespace Arcanedev\Moduly\Providers;
 
+use Arcanedev\Support\Laravel\ServiceProvider;
 use Illuminate\Database\Migrations\Migrator;
 use Illuminate\Database\Migrations\DatabaseMigrationRepository;
-use Illuminate\Support\ServiceProvider;
 
 /**
  * Class MigrationServiceProvider
@@ -11,28 +11,9 @@ use Illuminate\Support\ServiceProvider;
 class MigrationServiceProvider extends ServiceProvider
 {
     /* ------------------------------------------------------------------------------------------------
-     |  Properties
-     | ------------------------------------------------------------------------------------------------
-     */
-    /**
-    * @var bool $defer Indicates if loading of the provider is deferred.
-    */
-    protected $defer = false;
-
-    /* ------------------------------------------------------------------------------------------------
      |  Main Functions
      | ------------------------------------------------------------------------------------------------
      */
-    /**
-     * Boot the service provider.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-    }
-
     /**
      * Register the service provider.
      *
