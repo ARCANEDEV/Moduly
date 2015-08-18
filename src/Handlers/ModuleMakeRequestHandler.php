@@ -5,7 +5,7 @@ use Arcanedev\Moduly\Bases\Handler;
 
 /**
  * Class ModuleMakeRequestHandler
- * @package Caffeinated\Modules\Handlers\Console\Commands
+ * @package Arcanedev\Moduly\Handlers
  */
 class ModuleMakeRequestHandler extends Handler
 {

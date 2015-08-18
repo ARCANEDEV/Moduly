@@ -133,7 +133,7 @@ class ModuleMakeMigrationHandler extends Handler
     {
         $path = $this->moduly->getModulePath($this->moduleName);
 
-        return $path . config('moduly.folders.migrations');
+        return $path . config('moduly.modules.folders.migrations');
     }
 
     /**
