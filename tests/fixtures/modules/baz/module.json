@@ -1,0 +1,7 @@
+{
+    "name": "baz",
+    "description": "Baz module description",
+    "version": "1.0.0",
+    "enabled": false,
+    "order": 3
+}

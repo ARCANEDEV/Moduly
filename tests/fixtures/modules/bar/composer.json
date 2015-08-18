@@ -1,0 +1,17 @@
+{
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Arcanedev\\Bar\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Arcanedev\\Bar\\Tests\\": "tests/"
+        }
+    }
+}

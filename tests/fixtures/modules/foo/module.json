@@ -1,0 +1,8 @@
+{
+    "name": "foo",
+    "description": "Foo module description",
+    "version": "1.0.0",
+    "provider": "Arcanedev\\Foo\\FooServiceProvider",
+    "enabled": false,
+    "order": 1
+}
