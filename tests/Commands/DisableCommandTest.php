@@ -9,20 +9,6 @@ use Arcanedev\Moduly\Tests\CommandTestCase;
 class DisableCommandTest extends CommandTestCase
 {
     /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
-     */
-    public function setUp()
-    {
-        parent::setUp();
-    }
-
-    public function tearDown()
-    {
-        parent::tearDown();
-    }
-
-    /* ------------------------------------------------------------------------------------------------
      |  Test Functions
      | ------------------------------------------------------------------------------------------------
      */
@@ -46,7 +32,7 @@ class DisableCommandTest extends CommandTestCase
     public function it_cant_disable_not_found_module()
     {
         $this->artisan('module:disable', [
-            'module' => 'foo'
+            'module' => 'hello'
         ]);
     }
 }

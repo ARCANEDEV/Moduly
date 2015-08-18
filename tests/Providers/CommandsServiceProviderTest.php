@@ -1,22 +1,20 @@
-<?php namespace Arcanedev\Moduly\Tests;
+<?php namespace Arcanedev\Moduly\Tests\Providers;
 
-use Arcanedev\Moduly\Entities\ModulesCollection;
-use Arcanedev\Moduly\Moduly;
+use Arcanedev\Moduly\Providers\CommandsServiceProvider;
+use Arcanedev\Moduly\Tests\TestCase;
 
 /**
- * Class ModulyTest
- * @package Arcanedev\Moduly\Tests
+ * Class CommandsServiceProviderTest
+ * @package Arcanedev\Moduly\Tests\Providers
  */
-class ModulyTest extends TestCase
+class CommandsServiceProviderTest extends TestCase
 {
     /* ------------------------------------------------------------------------------------------------
      |  Properties
      | ------------------------------------------------------------------------------------------------
      */
-    /**
-     * @var Moduly
-     */
-    protected $moduly;
+    /** @var CommandsServiceProvider */
+    private $provider;
 
     /* ------------------------------------------------------------------------------------------------
      |  Main Functions
@@ -26,14 +24,14 @@ class ModulyTest extends TestCase
     {
         parent::setUp();
 
-        $this->moduly  = $this->moduly();
+        $this->provider = $this->app->getProvider(CommandsServiceProvider::class);
     }
 
     public function tearDown()
     {
         parent::tearDown();
 
-        unset($this->moduly);
+        unset($this->provider);
     }
 
     /* ------------------------------------------------------------------------------------------------
@@ -41,16 +39,9 @@ class ModulyTest extends TestCase
      | ------------------------------------------------------------------------------------------------
      */
     /** @test */
-    public function it_can_be_instantiated()
+    public function it_can_be_registered()
     {
-        $this->assertInstanceOf(Moduly::class, $this->moduly);
-        $this->assertEquals('arcanedev.moduly', Moduly::KEY_NAME);
-    }
-
-    /** @test */
-    public function it_can_get_all_modules()
-    {
-        $modules = $this->moduly->all();
-        $this->assertInstanceOf(ModulesCollection::class, $modules);
+        $this->assertInstanceOf(CommandsServiceProvider::class, $this->provider);
+        $this->assertCount(11, $this->provider->provides());
     }
 }

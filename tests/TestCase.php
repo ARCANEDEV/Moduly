@@ -1,5 +1,7 @@
 <?php namespace Arcanedev\Moduly\Tests;
 
+use Arcanedev\Moduly\Facades\Moduly as ModulyFacade;
+use Arcanedev\Moduly\Moduly;
 use Arcanedev\Moduly\ModulyServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use RecursiveDirectoryIterator;
@@ -50,7 +52,7 @@ abstract class TestCase extends BaseTestCase
     protected function getPackageAliases($app)
     {
         return [
-            'Moduly' => \Arcanedev\Moduly\Facades\Moduly::class
+            'Moduly' => ModulyFacade::class
         ];
     }
 
@@ -64,8 +66,8 @@ abstract class TestCase extends BaseTestCase
         $app['path.base'] = realpath(__DIR__ . '/../');
 
         $app['config']->set('app.debug', true);
-        $app['config']->set('moduly.path', __DIR__ . '/fixture/modules');
-        $app['config']->set('moduly.namespace', 'Arcanedev\\');
+        $app['config']->set('moduly.modules.path', $this->getModulesFixturesPath());
+        $app['config']->set('moduly.modules.namespace', 'Arcanedev\\');
 
         $app['config']->set('database.default', 'db-test');
         $app['config']->set('database.connections.db-test', [
@@ -86,7 +88,7 @@ abstract class TestCase extends BaseTestCase
      */
     public function moduly()
     {
-        return $this->app[ModulyServiceProvider::MODULY_KEY];
+        return $this->app[Moduly::KEY_NAME];
     }
 
     /**
@@ -100,15 +102,33 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-     * Get fixture module path
-     *
-     * @param  string  $name
+     * Get fixtures folder path
      *
      * @return string
      */
-    protected function getFixtureModulePath($name)
+    protected function getFixturesPath()
     {
-        return realpath(__DIR__ . '/fixture/modules/' . $name);
+        return realpath(__DIR__ . '/fixtures');
+    }
+
+    /**
+     * Get modules fixtures folder path
+     *
+     * @return string
+     */
+    protected function getModulesFixturesPath()
+    {
+        return realpath($this->getFixturesPath() . '/modules');
+    }
+
+    /**
+     * Get module fixture folder path by name
+     *
+     * @return string
+     */
+    protected function getModulePath($name)
+    {
+        return realpath($this->getModulesFixturesPath() . '/' . $name);
     }
 
     /**
@@ -116,7 +136,7 @@ abstract class TestCase extends BaseTestCase
      *
      * @param string  $name
      */
-    protected function createModule($name)
+    protected function makeModule($name)
     {
         $this->artisan('module:make', [
             'module' => $name
@@ -130,7 +150,7 @@ abstract class TestCase extends BaseTestCase
      */
     protected function deleteModule($name)
     {
-        $dir   = $this->getFixtureModulePath($name);
+        $dir   = $this->getModulePath($name);
         $files = new RecursiveIteratorIterator(
             new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS),
             RecursiveIteratorIterator::CHILD_FIRST

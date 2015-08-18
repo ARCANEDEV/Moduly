@@ -9,20 +9,6 @@ use Arcanedev\Moduly\Tests\CommandTestCase;
 class MakeMigrationCommandTest extends CommandTestCase
 {
     /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
-     */
-    public function setUp()
-    {
-        parent::setUp();
-    }
-
-    public function tearDown()
-    {
-        parent::tearDown();
-    }
-
-    /* ------------------------------------------------------------------------------------------------
      |  Test Functions
      | ------------------------------------------------------------------------------------------------
      */
@@ -39,8 +25,8 @@ class MakeMigrationCommandTest extends CommandTestCase
     public function it_cant_make_migration_if_module_not_found()
     {
         $this->artisan('module:make-migration', [
-            'module'    => 'bar',
-            'table'     => 'create_foo_table'
+            'module'    => 'hello',
+            'table'     => 'create_world_table'
         ]);
     }
 }
