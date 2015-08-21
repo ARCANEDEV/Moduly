@@ -52,10 +52,12 @@ class ModulesCollection extends Collection
      */
     private function loadModule($dir)
     {
-        $module = new Module($dir);
+        if ( ! $this->isIgnored(basename($dir))) {
+            $module = new Module($dir);
 
-        if ( ! $this->isIgnored($module->name)) {
-            $this->put($module->name, $module);
+            if ( ! $this->isIgnored($module->slug)) {
+                $this->put($module->slug, $module);
+            }
         }
     }
 

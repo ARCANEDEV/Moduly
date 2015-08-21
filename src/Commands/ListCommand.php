@@ -23,19 +23,23 @@ class ListCommand extends Command
     protected $signature = 'module:list';
 
     /**
-     * @var string $description The console command description.
+     * The console command description.
+     *
+     * @var string
      */
     protected $description = 'List all application modules';
+
+    /**
+     * The table headers for the command.
+     *
+     * @var array
+     */
+    protected $headers = ['#', 'Slug', 'Name', 'Description', 'Status'];
 
     /**
      * @var Moduly
      */
     protected $moduly;
-
-    /**
-     * @var array $header The table headers for the command.
-     */
-    protected $headers = ['#', 'Name', 'Slug', 'Description', 'Status'];
 
     /* ------------------------------------------------------------------------------------------------
      |  Constructor
@@ -72,12 +76,16 @@ class ListCommand extends Command
         }
     }
 
+    /* ------------------------------------------------------------------------------------------------
+     |  Other Functions
+     | ------------------------------------------------------------------------------------------------
+     */
     /**
      * Display the module information on the console.
      *
      * @param  Collection $modules
      */
-    protected function displayModules($modules)
+    private function displayModules($modules)
     {
         $this->table($this->headers, $this->prepareModules($modules));
     }
@@ -89,13 +97,11 @@ class ListCommand extends Command
      *
      * @return array
      */
-    protected function prepareModules($modules)
+    private function prepareModules($modules)
     {
-        $results = [];
-
-        foreach ($modules as $module) {
-            $results[] = $this->getModuleInformation($module);
-        }
+        $results = array_map(function($module) {
+            return $this->getModuleInformation($module);
+        }, $modules->toArray());
 
         return array_filter($results);
     }
@@ -107,14 +113,15 @@ class ListCommand extends Command
      *
      * @return array
      */
-    protected function getModuleInformation(Module $module)
+    private function getModuleInformation(Module $module)
     {
 
         return [
             '#'           => $module->order,
+            'slug'        => $module->slug,
             'name'        => $module->name,
             'description' => $module->description,
-            'status'      => $module->enabled ? 'Enabled' : 'Disabled'
+            'status'      => $module->isEnabled() ? 'Enabled' : 'Disabled'
         ];
     }
 }

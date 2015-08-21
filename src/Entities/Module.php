@@ -15,6 +15,9 @@ class Module
      | ------------------------------------------------------------------------------------------------
      */
     /** @var string */
+    public $slug = '';
+
+    /** @var string */
     public $name = '';
 
     /** @var string */
@@ -112,6 +115,16 @@ class Module
         );
     }
 
+    /**
+     * Check if module is enabled
+     *
+     * @return bool
+     */
+    public function isEnabled()
+    {
+        return (bool) $this->enabled;
+    }
+
     /* ------------------------------------------------------------------------------------------------
      |  Main Functions
      | ------------------------------------------------------------------------------------------------
@@ -124,7 +137,8 @@ class Module
     public function load()
     {
         $this->json        = Json::make($this->path . '/module.json');
-        $this->name        = str_slug($this->json->name);
+        $this->slug        = str_slug($this->json->name);
+        $this->name        = $this->json->name;
         $this->description = $this->json->description;
         $this->version     = $this->json->version;
         $this->provider    = $this->json->provider;
