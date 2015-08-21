@@ -102,7 +102,7 @@ class Module
     public function getProvider()
     {
         // @todo: make it optional ??
-        if ($this->hasProvider() && class_exists($this->provider)) {
+        if ($this->hasProvider() && class_exists($this->provider, false)) {
             return $this->provider;
         }
 
@@ -111,7 +111,7 @@ class Module
             : 'not specified';
 
         throw new ServiceProviderNotFoundException(
-            "Service provider [{$provider}] not found in [{$this->name}]"
+            "Service provider [{$provider}] not found in [{$this->slug}]"
         );
     }
 

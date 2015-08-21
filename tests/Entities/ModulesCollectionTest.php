@@ -63,19 +63,20 @@ class ModulesCollectionTest extends TestCase
 
         $exceptedData = [
             'foo' => [
-                'name' => 'foo',
+                'name' => 'Foo',
             ],
             'Foo' => [
-                'name' => 'foo',
+                'name' => 'Foo',
             ],
             'bar' => [
-                'name' => 'bar',
+                'name' => 'Bar',
             ],
         ];
 
         foreach($exceptedData as $key => $excepted) {
             $module = $this->modules->get($key);
             $this->assertInstanceOf(Module::class, $module);
+            $this->assertEquals(str_slug($excepted['name']), $module->slug);
             $this->assertEquals($excepted['name'], $module->name);
         }
     }
@@ -94,6 +95,18 @@ class ModulesCollectionTest extends TestCase
         $this->loadModules();
 
         $this->assertCount(2, $this->modules->disabled());
+    }
+
+    /** @test */
+    public function it_can_reset()
+    {
+        $this->loadModules();
+
+        $this->assertCount(3, $this->modules->all());
+
+        $this->modules->reset();
+
+        $this->assertCount(0, $this->modules->all());
     }
 
     /** @test */

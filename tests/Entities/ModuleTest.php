@@ -44,26 +44,32 @@ class ModuleTest extends TestCase
     public function it_can_be_instantiated()
     {
         $this->assertInstanceOf(Module::class, $this->module);
-        $this->assertEquals('foo', $this->module->name);
+        $this->assertEquals('foo', $this->module->slug);
+        $this->assertEquals('Foo', $this->module->name);
         $this->assertEquals('Foo module description', $this->module->description);
         $this->assertEquals('1.0.0', $this->module->version);
         $this->assertEquals('Arcanedev\\Foo\\FooServiceProvider', $this->module->getProvider());
         $this->assertFalse($this->module->enabled);
+        $this->assertFalse($this->module->isEnabled());
         $this->assertEquals(1, $this->module->order);
+        $this->assertEquals($this->getModulePath('foo'), $this->module->getPath());
     }
 
     /** @test */
     public function it_can_enable_and_disable()
     {
         $this->assertFalse($this->module->enabled);
+        $this->assertFalse($this->module->isEnabled());
 
         $this->module->enable();
 
         $this->assertTrue($this->module->enabled);
+        $this->assertTrue($this->module->isEnabled());
 
         $this->module->disable();
 
         $this->assertFalse($this->module->enabled);
+        $this->assertFalse($this->module->isEnabled());
     }
 
     /**
