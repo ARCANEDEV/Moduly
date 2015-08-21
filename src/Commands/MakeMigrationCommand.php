@@ -14,12 +14,16 @@ class MakeMigrationCommand extends Command
      | ------------------------------------------------------------------------------------------------
      */
     /**
-     * @var string $name The console command name.
+     * The signature of the console command.
+     *
+     * @var string
      */
     protected $signature    = 'module:make-migration {module} {table}';
 
     /**
-     * @var string $description The console command description.
+     * The console command description.
+     *
+     * @var string
      */
     protected $description  = 'Create a new module migration file';
 

@@ -13,14 +13,16 @@ class EnableCommand extends Command
      | ------------------------------------------------------------------------------------------------
      */
     /**
-     * The name and signature of the console command.
+     * The signature of the console command.
      *
      * @var string
      */
     protected $signature    = 'module:enable {module}';
 
     /**
-     * @var string $description The console command description.
+     * The console command description.
+     *
+     * @var string
      */
     protected $description  = 'Enable a module';
 

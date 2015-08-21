@@ -25,7 +25,7 @@ class MakeRequestCommandTest extends CommandTestCase
     public function it_cant_make_request_if_module_not_found()
     {
         $this->artisan('module:make-request', [
-            'module' => 'bar',
+            'module' => 'impossible',
             'name'   => 'CreateFooRequest'
         ]);
     }

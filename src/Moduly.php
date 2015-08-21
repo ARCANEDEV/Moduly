@@ -1,9 +1,9 @@
 <?php namespace Arcanedev\Moduly;
 
-use Arcanedev\Moduly\Bases\Collection;
 use Arcanedev\Moduly\Contracts\ModulyInterface;
 use Arcanedev\Moduly\Entities\Module;
 use Arcanedev\Moduly\Entities\ModulesCollection;
+use Arcanedev\Support\Collection;
 use Illuminate\Config\Repository as Config;
 use Illuminate\Foundation\Application;
 

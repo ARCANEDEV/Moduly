@@ -14,7 +14,7 @@ class MakeCommand extends Command
      | ------------------------------------------------------------------------------------------------
      */
     /**
-     * The name and signature of the console command.
+     * The signature of the console command.
      *
      * @var string
      */
@@ -23,7 +23,7 @@ class MakeCommand extends Command
     /**
      * The console command description.
      *
-     * @var string $description
+     * @var string
      */
     protected $description  = 'Create a new module';
 

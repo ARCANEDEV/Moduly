@@ -14,9 +14,9 @@ class SeedCommand extends Command
      | ------------------------------------------------------------------------------------------------
      */
     /**
-     * The console command name.
+     * The signature of the console command.
      *
-     * @var string $name
+     * @var string
      */
     protected $signature    = 'module:seed
                                {module? : Module slug.}
@@ -25,7 +25,9 @@ class SeedCommand extends Command
                                {--force : Force the operation to run while in production.}';
 
     /**
-     * @var string $description The console command description.
+     * The console command description.
+     *
+     * @var string
      */
     protected $description  = 'Seed the database with records for a specific or all modules';
 

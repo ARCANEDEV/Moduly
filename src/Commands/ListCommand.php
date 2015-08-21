@@ -16,7 +16,7 @@ class ListCommand extends Command
      | ------------------------------------------------------------------------------------------------
      */
     /**
-     * The name and signature of the console command.
+     * The signature of the console command.
      *
      * @var string
      */
@@ -72,7 +72,9 @@ class ListCommand extends Command
             $this->displayModules($modules);
         }
         else {
-            $this->error('Your application doesn\'t have any modules.');
+            // @codeCoverageIgnoreStart
+            $this->error("Your application doesn't have any modules.");
+            // @codeCoverageIgnoreEnd
         }
     }
 
@@ -115,7 +117,6 @@ class ListCommand extends Command
      */
     private function getModuleInformation(Module $module)
     {
-
         return [
             '#'           => $module->order,
             'slug'        => $module->slug,

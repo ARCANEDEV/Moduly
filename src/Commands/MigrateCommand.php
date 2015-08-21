@@ -22,7 +22,9 @@ class MigrateCommand extends Command
      | ------------------------------------------------------------------------------------------------
      */
     /**
-     * @var string $name The console command name.
+     * The signature of the console command.
+     *
+     * @var string
      */
     protected $signature    = 'module:migrate
                                {module=all : Module slug.}
@@ -34,7 +36,7 @@ class MigrateCommand extends Command
     /**
      * The console command description.
      *
-     * @var string $description
+     * @var string
      */
     protected $description  = 'Run the database migrations for a specific or all modules';
 
@@ -85,7 +87,7 @@ class MigrateCommand extends Command
 
         $force = $this->getBooleanOption('force');
 
-        if ($this->getModuleName() == 'all') {
+        if ($this->getModuleName() === 'all') {
             $this->migrateAll($force);
 
             return;
@@ -98,7 +100,7 @@ class MigrateCommand extends Command
             return;
         }
 
-        if ($module->enabled || $force) {
+        if ($module->isEnabled() || $force) {
             $this->migrate($module->name);
         }
     }
@@ -151,7 +153,7 @@ class MigrateCommand extends Command
         // a migration and a seed at the same time, as it is only this command.
         if ($this->getBooleanOption('seed')) {
             $this->call('module:seed', [
-                'module' => $slug,
+                'module'  => $slug,
                 '--force' => true
             ]);
         }

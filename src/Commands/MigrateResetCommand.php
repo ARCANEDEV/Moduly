@@ -23,9 +23,9 @@ class MigrateResetCommand extends Command
      | ------------------------------------------------------------------------------------------------
      */
     /**
-     * The console command name.
+     * The signature of the console command.
      *
-     * @var string $name
+     * @var string
      */
     protected $signature    = 'module:migrate-reset
                                {module? : Module slug.}
@@ -37,7 +37,7 @@ class MigrateResetCommand extends Command
     /**
      * The console command description.
      *
-     * @var string $description
+     * @var string
      */
     protected $description  = 'Rollback all database migrations for a specific or all modules';
 

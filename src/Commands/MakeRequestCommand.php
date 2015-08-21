@@ -14,14 +14,18 @@ class MakeRequestCommand extends Command
      | ------------------------------------------------------------------------------------------------
      */
     /**
-     * @var string $name The console command name.
+     * The signature of the console command.
+     *
+     * @var string
      */
     protected $signature    = 'module:make-request
                                {module : The slug of the module}
                                {name : The name of the class}';
 
     /**
-     * @var string $description The console command description.
+     * The console command description.
+     *
+     * @var string
      */
     protected $description  = 'Create a new module form request class';
 

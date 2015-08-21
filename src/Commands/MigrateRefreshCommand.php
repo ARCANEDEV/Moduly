@@ -20,7 +20,9 @@ class MigrateRefreshCommand extends Command
      | ------------------------------------------------------------------------------------------------
      */
     /**
-     * @var string $name The console command name.
+     * The signature of the console command.
+     *
+     * @var string
      */
     protected $signature = 'module:migrate-refresh
                             {module? : Module slug.}
@@ -30,7 +32,9 @@ class MigrateRefreshCommand extends Command
                             {--seed : Indicates if the seed task should be re-run.}';
 
     /**
-     * @var string $description The console command description.
+     * The console command description.
+     *
+     * @var string
      */
     protected $description = 'Reset and re-run all migrations for a specific or all modules';
 

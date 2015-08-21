@@ -22,9 +22,9 @@ class MigrateRollbackCommand extends Command
      | ------------------------------------------------------------------------------------------------
      */
     /**
-     * The console command name.
+     * The signature of the console command.
      *
-     * @var string $name
+     * @var string
      */
     protected $signature    = 'module:migrate-rollback
                                {module? : Module slug.}
@@ -35,7 +35,7 @@ class MigrateRollbackCommand extends Command
     /**
      * The console command description.
      *
-     * @var string $description
+     * @var string
      */
     protected $description  = 'Rollback the last database migrations for a specific or all modules';
 
@@ -69,17 +69,15 @@ class MigrateRollbackCommand extends Command
      */
     public function handle()
     {
-        if ( ! $this->confirmToProceed()) {
-            return;
-        }
+        if ($this->confirmToProceed()) {
+            $module = $this->getModuleName();
 
-        $module = $this->getModuleName();
-
-        if ($module) {
-            $this->rollback($module);
-        }
-        else {
-            $this->rollbackAll();
+            if ($module) {
+                $this->rollback($module);
+            }
+            else {
+                $this->rollbackAll();
+            }
         }
     }
 
