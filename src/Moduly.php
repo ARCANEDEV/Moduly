@@ -3,7 +3,6 @@
 use Arcanedev\Moduly\Contracts\ModulyInterface;
 use Arcanedev\Moduly\Entities\Module;
 use Arcanedev\Moduly\Entities\ModulesCollection;
-use Arcanedev\Support\Collection;
 use Illuminate\Config\Repository as Config;
 use Illuminate\Foundation\Application;
 
@@ -69,6 +68,8 @@ class Moduly implements ModulyInterface
     }
 
     /**
+     * Get namespace
+     *
      * @return string
      */
     public function getNamespace()
@@ -79,7 +80,7 @@ class Moduly implements ModulyInterface
     /**
      * Set modules base path
      *
-     * @param  string $basePath
+     * @param  string  $basePath
      *
      * @return self
      */
@@ -90,6 +91,13 @@ class Moduly implements ModulyInterface
         return $this;
     }
 
+    /**
+     * Get module path
+     *
+     * @param  string  $module
+     *
+     * @return string
+     */
     public function getModulePath($module)
     {
         $module = str_slug($module);
@@ -97,15 +105,23 @@ class Moduly implements ModulyInterface
         return $this->basePath . "/{$module}/";
     }
 
+    /**
+     * Get all modules
+     *
+     * @return \Arcanedev\Moduly\Entities\ModulesCollection
+     */
+    public function modules()
+    {
+        // Reload all modules
+        $this->modules->load($this->basePath);
+
+        return $this->modules;
+    }
+
     /* ------------------------------------------------------------------------------------------------
      |  Main Functions
      | ------------------------------------------------------------------------------------------------
      */
-    private function reloadModules()
-    {
-        $this->modules->load($this->basePath);
-    }
-
     /**
      * Register all modules
      */
@@ -121,13 +137,11 @@ class Moduly implements ModulyInterface
     /**
      * Get all modules
      *
-     * @return ModulesCollection
+     * @return \Arcanedev\Moduly\Entities\ModulesCollection
      */
     public function all()
     {
-        $this->reloadModules();
-
-        return $this->modules;
+        return $this->modules();
     }
 
     /**
@@ -137,19 +151,19 @@ class Moduly implements ModulyInterface
      */
     public function slugs()
     {
-        return $this->all()->slugs();
+        return $this->modules()->slugs();
     }
 
     /**
      * Get a module
      *
-     * @param  string $module
+     * @param  string  $module
      *
-     * @return Module
+     * @return \Arcanedev\Moduly\Entities\Module
      */
     public function get($module)
     {
-        return $this->where('name', $module)->first();
+        return $this->where('slug', $module)->first();
     }
 
     /**
@@ -158,15 +172,11 @@ class Moduly implements ModulyInterface
      * @param  string  $key
      * @param  mixed   $value
      *
-     * @return Collection
+     * @return \Arcanedev\Support\Collection
      */
     public function where($key, $value)
     {
-        $key = str_slug($key);
-
-        $this->reloadModules();
-
-        return $this->modules->where($key, $value);
+        return $this->modules()->where($key, $value);
     }
 
     /**
@@ -180,7 +190,7 @@ class Moduly implements ModulyInterface
     {
         $name = str_slug($name);
 
-        return $this->all()->has($name);
+        return $this->modules()->has($name);
     }
 
     /**
@@ -190,59 +200,51 @@ class Moduly implements ModulyInterface
      */
     public function count()
     {
-        return $this->all()->count();
+        return $this->modules()->count();
     }
 
     /**
      * Gets all enabled modules.
      *
-     * @return ModulesCollection
+     * @return \Arcanedev\Moduly\Entities\ModulesCollection
      */
     public function enabled()
     {
-        $this->reloadModules();
-
-        return $this->modules->enabled();
+        return $this->modules()->enabled();
     }
 
     /**
      * Gets all disabled modules.
      *
-     * @return ModulesCollection
+     * @return \Arcanedev\Moduly\Entities\ModulesCollection
      */
     public function disabled()
     {
-        $this->reloadModules();
-
-        return $this->modules->disabled();
+        return $this->modules()->disabled();
     }
 
     /**
      * Enables the specified module.
      *
-     * @param  string $name
+     * @param  string  $name
      *
      * @return bool
      */
     public function enable($name)
     {
-        $this->reloadModules();
-
-        return $this->modules->enable($name);
+        return $this->modules()->enable($name);
     }
 
     /**
      * Disables the specified module.
      *
-     * @param  string $name
+     * @param  string  $name
      *
      * @return bool
      */
     public function disable($name)
     {
-        $this->reloadModules();
-
-        return $this->modules->disable($name);
+        return $this->modules()->disable($name);
     }
 
     /* ------------------------------------------------------------------------------------------------
@@ -252,28 +254,24 @@ class Moduly implements ModulyInterface
     /**
      * Check if module is enabled
      *
-     * @param  string $name
+     * @param  string  $name
      *
      * @return bool
      */
     public function isEnabled($name)
     {
-        $this->reloadModules();
-
-        return $this->modules->isEnabled($name);
+        return $this->modules()->isEnabled($name);
     }
 
     /**
      * Check if specified module is disabled.
      *
-     * @param  string $name
+     * @param  string  $name
      *
      * @return bool
      */
     public function isDisabled($name)
     {
-        $this->reloadModules();
-
-        return $this->modules->isDisabled($name);
+        return $this->modules()->isDisabled($name);
     }
 }
