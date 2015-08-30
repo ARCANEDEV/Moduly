@@ -110,7 +110,7 @@ class Moduly implements ModulyInterface
      *
      * @return \Arcanedev\Moduly\Entities\ModulesCollection
      */
-    public function modules()
+    protected function modules()
     {
         // Reload all modules
         $this->modules->load($this->basePath);
