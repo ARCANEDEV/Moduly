@@ -63,9 +63,9 @@ class MigrateResetCommand extends Command
     /**
      * Create a new command instance.
      *
-     * @param Moduly      $module
-     * @param Filesystem  $files
-     * @param Migrator    $migrator
+     * @param  Moduly      $module
+     * @param  Filesystem  $files
+     * @param  Migrator    $migrator
      */
     public function __construct(Moduly $module, Filesystem $files, Migrator $migrator)
     {
@@ -103,7 +103,7 @@ class MigrateResetCommand extends Command
     /**
      * Run the migration reset for all modules.
      *
-     * @param bool  $force
+     * @param  bool  $force
      */
     private function resetAll($force = false)
     {
@@ -148,9 +148,9 @@ class MigrateResetCommand extends Command
     /**
      * Run "down" a migration instance.
      *
-     * @param  string $slug
-     * @param  object $migration
-     * @param  bool   $pretend
+     * @param  string  $slug
+     * @param  object  $migration
+     * @param  bool    $pretend
      */
     protected function runDown($slug, $migration, $pretend)
     {
@@ -174,8 +174,8 @@ class MigrateResetCommand extends Command
     /**
      * Get the console command parameters.
      *
-     * @param  string $slug
-     * @return array
+     * @param   string  $slug
+     * @return  array
      */
     protected function getParameters($slug)
     {

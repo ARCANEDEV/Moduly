@@ -41,7 +41,7 @@ class MakeRequestCommand extends Command
     /**
      * Create a new command instance.
      *
-     * @param ModuleMakeRequestHandler $handler
+     * @param  ModuleMakeRequestHandler  $handler
      */
     public function __construct(ModuleMakeRequestHandler $handler)
     {

@@ -39,7 +39,7 @@ class MakeCommand extends Command
     /**
      * Create a new command instance.
      *
-     * @param ModuleMakeHandler $handler
+     * @param  ModuleMakeHandler  $handler
      */
     public function __construct(ModuleMakeHandler $handler)
     {

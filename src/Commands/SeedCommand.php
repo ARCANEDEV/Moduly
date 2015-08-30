@@ -43,7 +43,7 @@ class SeedCommand extends Command
     /**
      * Create a new command instance.
      *
-     * @param Moduly  $module
+     * @param  Moduly  $module
      */
     public function __construct(Moduly $module)
     {
@@ -85,7 +85,7 @@ class SeedCommand extends Command
     /**
      * Seed all modules.
      *
-     * @param bool  $force
+     * @param  bool  $force
      */
     private function seedAll($force = false)
     {

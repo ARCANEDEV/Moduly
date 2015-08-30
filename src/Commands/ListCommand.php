@@ -48,7 +48,7 @@ class ListCommand extends Command
     /**
      * Create a new command instance.
      *
-     * @param Moduly $module
+     * @param  Moduly  $module
      */
     public function __construct(Moduly $module)
     {
@@ -85,7 +85,7 @@ class ListCommand extends Command
     /**
      * Display the module information on the console.
      *
-     * @param  Collection $modules
+     * @param  Collection  $modules
      */
     private function displayModules($modules)
     {
@@ -95,7 +95,7 @@ class ListCommand extends Command
     /**
      * Get all modules.
      *
-     * @param  Collection $modules
+     * @param  Collection  $modules
      *
      * @return array
      */
@@ -111,7 +111,7 @@ class ListCommand extends Command
     /**
      * Returns module manifest information.
      *
-     * @param  Module $module
+     * @param  Module  $module
      *
      * @return array
      */

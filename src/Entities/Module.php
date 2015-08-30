@@ -48,7 +48,7 @@ class Module
     /**
      * Module constructor
      *
-     * @param string $path
+     * @param  string  $path
      *
      * @throws FileMissingException
      */
@@ -80,7 +80,7 @@ class Module
     /**
      * Set module path
      *
-     * @param  string $path
+     * @param  string  $path
      *
      * @return self
      */
@@ -171,7 +171,7 @@ class Module
     /**
      * Update module enable attribute
      *
-     * @param  bool $enabled
+     * @param  bool  $enabled
      *
      * @return bool
      */
@@ -192,9 +192,15 @@ class Module
      |  Check Function
      | ------------------------------------------------------------------------------------------------
      */
+    /**
+     * Check the path
+     *
+     * @param  string  $path
+     */
     private function checkPath(&$path)
     {
         $path = realpath($path);
+        // TODO: Add an exception if path does not exist
     }
 
     /**

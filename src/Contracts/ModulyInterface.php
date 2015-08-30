@@ -1,7 +1,7 @@
 <?php namespace Arcanedev\Moduly\Contracts;
 
-use Arcanedev\Moduly\Bases\Collection;
 use Arcanedev\Moduly\Entities\ModulesCollection;
+use Arcanedev\Support\Collection;
 
 /**
  * Interface ModulyInterface

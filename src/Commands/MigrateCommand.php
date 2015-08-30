@@ -48,7 +48,7 @@ class MigrateCommand extends Command
     /**
      * The migrator instance.
      *
-     * @var Migrator $migrator
+     * @var Migrator
      */
     protected $migrator;
 
@@ -59,8 +59,8 @@ class MigrateCommand extends Command
     /**
      * Create a new command instance.
      *
-     * @param Migrator  $migrator
-     * @param Moduly    $module
+     * @param  Migrator  $migrator
+     * @param  Moduly    $module
      */
     public function __construct(Migrator $migrator, Moduly $module)
     {
@@ -108,7 +108,7 @@ class MigrateCommand extends Command
     /**
      * Run migrations for all modules.
      *
-     * @param bool  $force
+     * @param  bool  $force
      */
     private function migrateAll($force = false)
     {
@@ -122,7 +122,7 @@ class MigrateCommand extends Command
     /**
      * Run migrations for the specified module.
      *
-     * @param  string $slug
+     * @param  string  $slug
      */
     private function migrate($slug)
     {

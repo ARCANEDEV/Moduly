@@ -39,7 +39,7 @@ class MakeMigrationCommand extends Command
     /**
      * Create a new command instance.
      *
-     * @param ModuleMakeMigrationHandler $handler
+     * @param  ModuleMakeMigrationHandler  $handler
      */
     public function __construct(ModuleMakeMigrationHandler $handler)
     {

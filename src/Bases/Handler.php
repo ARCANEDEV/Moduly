@@ -35,8 +35,8 @@ abstract class Handler
     /**
      * Constructor method.
      *
-     * @param Moduly     $moduly
-     * @param Filesystem $finder
+     * @param  Moduly      $moduly
+     * @param  Filesystem  $finder
      */
     public function __construct(Moduly $moduly, Filesystem $finder)
     {

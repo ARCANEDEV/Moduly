@@ -30,7 +30,7 @@ class ModulesCollection extends Collection
     /**
      * Load modules
      *
-     * @param  string $path
+     * @param  string  $path
      *
      * @return self
      */
@@ -48,7 +48,7 @@ class ModulesCollection extends Collection
     /**
      * Load module from directory
      *
-     * @param string $dir
+     * @param  string  $dir
      */
     private function loadModule($dir)
     {
@@ -74,8 +74,8 @@ class ModulesCollection extends Collection
     /**
      * Get a module by key
      *
-     * @param  string $key
-     * @param  mixed  $default
+     * @param  string  $key
+     * @param  mixed   $default
      *
      * @return Module
      */
@@ -121,7 +121,7 @@ class ModulesCollection extends Collection
     /**
      * Filter by the enabled attribute
      *
-     * @param  bool $enabled
+     * @param  bool  $enabled
      *
      * @return self
      */
@@ -135,7 +135,7 @@ class ModulesCollection extends Collection
     /**
      * Enable a module
      *
-     * @param  string $name
+     * @param  string  $name
      *
      * @throws ModuleNotFound
      *
@@ -149,7 +149,7 @@ class ModulesCollection extends Collection
     /**
      * Disable a module
      *
-     * @param  string $name
+     * @param  string  $name
      *
      * @throws ModuleNotFound
      *
@@ -163,8 +163,8 @@ class ModulesCollection extends Collection
     /**
      * Switch module's enabled attribute
      *
-     * @param  string $name
-     * @param  bool   $enable
+     * @param  string  $name
+     * @param  bool    $enable
      *
      * @throws ModuleNotFound
      *
@@ -188,7 +188,7 @@ class ModulesCollection extends Collection
     /**
      * Check if module is ignored
      *
-     * @param  string $name
+     * @param  string  $name
      *
      * @return bool
      */
@@ -200,7 +200,7 @@ class ModulesCollection extends Collection
     /**
      * Check if module is enabled
      *
-     * @param  string $key
+     * @param  string  $key
      *
      * @return bool
      */
@@ -216,7 +216,7 @@ class ModulesCollection extends Collection
     /**
      * Check if module is disabled
      *
-     * @param  string $key
+     * @param  string  $key
      *
      * @return bool
      */

@@ -51,7 +51,7 @@ class MigrateRollbackCommand extends Command
     /**
      * Create a new command instance.
      *
-     * @param Moduly  $module
+     * @param  Moduly  $module
      */
     public function __construct(Moduly $module)
     {
