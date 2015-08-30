@@ -26,7 +26,7 @@ class ModuleMakeHandler extends Handler
     /**
      * Module files to be created.
      *
-     * @var array $files
+     * @var array
      */
     protected $files = [
         'src/Seeds/{{name}}DatabaseSeeder.php',
@@ -40,7 +40,7 @@ class ModuleMakeHandler extends Handler
     /**
      * Module stubs used to populate defined files.
      *
-     * @var array $stubs
+     * @var array
      */
     protected $stubs = [
         'seeder.stub',
@@ -58,7 +58,7 @@ class ModuleMakeHandler extends Handler
     /**
      * Set the module slug
      *
-     * @param  string $slug
+     * @param  string  $slug
      *
      * @return self
      */
@@ -87,8 +87,8 @@ class ModuleMakeHandler extends Handler
     /**
      * Fire off the handler.
      *
-     * @param  Command $command
-     * @param  string  $slug
+     * @param  Command  $command
+     * @param  string   $slug
      */
     public function fire(Command $command, $slug)
     {
@@ -106,7 +106,7 @@ class ModuleMakeHandler extends Handler
     /**
      * Generate module folders and files.
      *
-     * @param  Command $command
+     * @param  Command  $command
      *
      * @return bool
      */
@@ -162,7 +162,7 @@ class ModuleMakeHandler extends Handler
     /**
      * Optimize the framework for better performance.
      *
-     * @param Command $command
+     * @param  Command  $command
      */
     protected function optimize(Command $command)
     {
@@ -202,7 +202,7 @@ class ModuleMakeHandler extends Handler
     /**
      * Get the path to the module.
      *
-     * @param  string $slug
+     * @param  string  $slug
      *
      * @return string
      */
@@ -216,7 +216,7 @@ class ModuleMakeHandler extends Handler
     /**
      * Get destination file.
      *
-     * @param  string $file
+     * @param  string  $file
      *
      * @return string
      */
@@ -228,7 +228,7 @@ class ModuleMakeHandler extends Handler
     /**
      * Get stub content by key.
      *
-     * @param  int $key
+     * @param  int  $key
      *
      * @return string
      */
@@ -242,7 +242,7 @@ class ModuleMakeHandler extends Handler
     /**
      * Replace placeholder text with correct values.
      *
-     * @param  string $content
+     * @param  string  $content
      *
      * @return string
      */

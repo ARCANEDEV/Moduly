@@ -14,12 +14,16 @@ class ModuleMakeRequestHandler extends Handler
      | ------------------------------------------------------------------------------------------------
      */
     /**
-     * @var string $moduleName The name of the module
+     * The name of the module
+     *
+     * @var string
      */
     protected $moduleName;
 
     /**
-     * @var string $className The name of the request class
+     * The name of the request class
+     *
+     * @var string
      */
     protected $className;
 

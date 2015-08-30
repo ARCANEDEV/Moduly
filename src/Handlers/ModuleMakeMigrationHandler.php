@@ -14,22 +14,30 @@ class ModuleMakeMigrationHandler extends Handler
      | ------------------------------------------------------------------------------------------------
      */
     /**
-     * @var string $moduleName The name of the module
+     * The name of the module
+     *
+     * @var string
      */
     protected $moduleName;
 
     /**
-     * @var string $table The name of the table
+     * The name of the table
+     *
+     * @var string
      */
     protected $table;
 
     /**
-     * @var string $migrationName The name of the migration
+     * The name of the migration
+     *
+     * @var string
      */
     protected $migrationName;
 
     /**
-     * @var string $className The name of the migration class
+     * The name of the migration class
+     *
+     * @var string
      */
     protected $className;
 
@@ -74,9 +82,9 @@ class ModuleMakeMigrationHandler extends Handler
     /**
      * Fire off the handler.
      *
-     * @param  Command $command
-     * @param  string  $module
-     * @param  string  $table
+     * @param  Command  $command
+     * @param  string   $module
+     * @param  string   $table
      */
     public function fire(Command $command, $module, $table)
     {
@@ -161,7 +169,8 @@ class ModuleMakeMigrationHandler extends Handler
     /**
      * Replace placeholder text with correct values.
      *
-     * @param  string $content
+     * @param  string  $content
+     *
      * @return string
      */
     protected function formatContent($content)

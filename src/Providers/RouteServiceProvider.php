@@ -10,8 +10,6 @@ abstract class RouteServiceProvider extends BaseRouteServiceProvider
 {
     /**
      * Set the root controller namespace for the application.
-     *
-     * @return void
      */
     protected function setRootControllerNamespace()
     {

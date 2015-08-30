@@ -33,6 +33,7 @@ class CommandsServiceProvider extends ServiceProvider
      |  Properties
      | ------------------------------------------------------------------------------------------------
      */
+    /** @var array  */
     protected $commands = [];
 
     /**
