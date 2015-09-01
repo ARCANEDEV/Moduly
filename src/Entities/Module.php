@@ -101,20 +101,24 @@ class Module
      */
     public function getProvider()
     {
-        $provider = $this->provider;
+        $provider = $this->hasProvider()
+            ? $this->provider
+            : $this->getGeneratedProvider();
 
-        if ($this->hasProvider() && class_exists($provider)) {
-            return $provider;
-        }
-        elseif (class_exists($provider = $this->getGeneratedProvider())) {
-            return $provider;
+        if ( ! class_exists($provider)) {
+            throw new ServiceProviderNotFoundException(
+                "Service provider [{$provider}] not found in [{$this->slug}]"
+            );
         }
 
-        throw new ServiceProviderNotFoundException(
-            "Service provider [{$provider}] not found in [{$this->slug}]"
-        );
+        return $provider;
     }
 
+    /**
+     * Get generated provider
+     *
+     * @return string
+     */
     private function getGeneratedProvider()
     {
         $package   = studly_case($this->name);
@@ -230,7 +234,7 @@ class Module
      */
     public function hasProvider()
     {
-        return ! empty($this->provider);
+        return ! empty($this->provider) || $this->hasGeneratedProvider();
     }
 
     /**
@@ -238,7 +242,7 @@ class Module
      *
      * @return bool
      */
-    public function hasGeneratedProvider()
+    private function hasGeneratedProvider()
     {
         return class_exists($this->getGeneratedProvider());
     }
