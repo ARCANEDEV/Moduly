@@ -101,14 +101,18 @@ class Module
      */
     public function getProvider()
     {
-        // @todo: make it optional ??
-        if ($this->hasProvider() && class_exists($this->provider, false)) {
-            return $this->provider;
+        $provider = $this->provider;
+
+        if ($this->hasProvider() && class_exists($provider)) {
+            return $provider;
         }
 
-        $provider = $this->hasProvider()
-            ? $this->provider
-            : 'not specified';
+        $package  = studly_case($this->name);
+        $provider = moduly()->getNamespace() . $package . '\\' . "{$package}ServiceProvider";
+
+        if (class_exists($provider)) {
+            return $provider;
+        }
 
         throw new ServiceProviderNotFoundException(
             "Service provider [{$provider}] not found in [{$this->slug}]"

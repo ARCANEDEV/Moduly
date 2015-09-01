@@ -86,7 +86,7 @@ class ModuleTest extends TestCase
      * @test
      *
      * @expectedException        \Arcanedev\Moduly\Exceptions\ServiceProviderNotFoundException
-     * @expectedExceptionMessage Service provider [not specified] not found in [baz]
+     * @expectedExceptionMessage Service provider [Arcanedev\Baz\BazServiceProvider] not found in [baz]
      */
     public function it_must_throw_exception_when_module_service_provider_not_found()
     {
