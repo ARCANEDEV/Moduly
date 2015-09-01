@@ -106,17 +106,23 @@ class Module
         if ($this->hasProvider() && class_exists($provider)) {
             return $provider;
         }
-
-        $package  = studly_case($this->name);
-        $provider = moduly()->getNamespace() . $package . '\\' . "{$package}ServiceProvider";
-
-        if (class_exists($provider)) {
+        elseif (class_exists($provider = $this->getGeneratedProvider())) {
             return $provider;
         }
 
         throw new ServiceProviderNotFoundException(
             "Service provider [{$provider}] not found in [{$this->slug}]"
         );
+    }
+
+    private function getGeneratedProvider()
+    {
+        $package   = studly_case($this->name);
+
+        return implode('\\', [
+            moduly()->getNamespace() . $package,
+            "{$package}ServiceProvider"
+        ]);
     }
 
     /**
@@ -225,5 +231,15 @@ class Module
     public function hasProvider()
     {
         return ! empty($this->provider);
+    }
+
+    /**
+     * Check if module has an auto-generated service provider
+     *
+     * @return bool
+     */
+    public function hasGeneratedProvider()
+    {
+        return class_exists($this->getGeneratedProvider());
     }
 }

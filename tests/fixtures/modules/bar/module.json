@@ -2,7 +2,6 @@
     "name": "Bar",
     "description": "Bar module description",
     "version": "1.0.0",
-    "provider": "Arcanedev\\Bar\\BarServiceProvider",
     "enabled": true,
     "order": 3
 }
