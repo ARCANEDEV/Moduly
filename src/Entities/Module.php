@@ -101,7 +101,7 @@ class Module
      */
     public function getProvider()
     {
-        $provider = $this->hasProvider()
+        $provider = ! empty($this->provider)
             ? $this->provider
             : $this->getGeneratedProvider();
 
