@@ -14,12 +14,7 @@
     "require": {
         "php": ">=5.5.9",
         "arcanedev/composer": "~1.0",
-        "arcanedev/support": "~2.0",
-        "illuminate/database": "~5.1.0",
-        "illuminate/support": "~5.1.0",
-        "illuminate/filesystem": "~5.1.0",
-        "illuminate/config": "~5.1.0",
-        "illuminate/routing": "~5.1.0"
+        "arcanedev/support": "~2.0"
     },
     "require-dev": {
         "orchestra/testbench": "~3.1.0",
@@ -39,6 +34,11 @@
             "Arcanedev\\Foo\\": "tests/fixtures/modules/foo/src/",
             "Arcanedev\\Bar\\": "tests/fixtures/modules/bar/src/",
             "Arcanedev\\Baz\\": "tests/fixtures/modules/baz/src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.1.x-dev"
         }
     }
 }
