@@ -16,6 +16,20 @@ class ModulyServiceProvider extends PackageServiceProvider
     protected $package = 'moduly';
 
     /* ------------------------------------------------------------------------------------------------
+     |  Getters & Setters
+     | ------------------------------------------------------------------------------------------------
+     */
+    /**
+     * Get the base path of the package.
+     *
+     * @return string
+     */
+    public function getBasePath()
+    {
+        return __DIR__ . '/..';
+    }
+
+    /* ------------------------------------------------------------------------------------------------
      |  Main Functions
      | ------------------------------------------------------------------------------------------------
      */
@@ -61,9 +75,7 @@ class ModulyServiceProvider extends PackageServiceProvider
      */
     private function registerFacades()
     {
-        $this->addAliases([
-            'Moduly' => Facades\Moduly::class
-        ]);
+        $this->addFacade('Moduly', Facades\Moduly::class);
     }
 
     /**
