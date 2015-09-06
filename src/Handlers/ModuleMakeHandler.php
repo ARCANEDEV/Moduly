@@ -4,8 +4,10 @@ use Arcanedev\Moduly\Bases\Command;
 use Arcanedev\Moduly\Bases\Handler;
 
 /**
- * Class ModuleMakeHandler
- * @package Arcanedev\Moduly\Handlers
+ * Class     ModuleMakeHandler
+ *
+ * @package  Arcanedev\Moduly\Handlers
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class ModuleMakeHandler extends Handler
 {

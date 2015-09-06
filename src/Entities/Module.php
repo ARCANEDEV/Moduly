@@ -5,8 +5,10 @@ use Arcanedev\Moduly\Exceptions\ServiceProviderNotFoundException;
 use Arcanedev\Support\Json;
 
 /**
- * Class Module
- * @package Arcanedev\Moduly\Entities
+ * Class     Module
+ *
+ * @package  Arcanedev\Moduly\Entities
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class Module
 {

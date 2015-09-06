@@ -3,8 +3,10 @@
 use Arcanedev\Moduly\Tests\CommandTestCase;
 
 /**
- * Class DisableCommandTest
- * @package Arcanedev\Moduly\Tests\Commands
+ * Class     DisableCommandTest
+ *
+ * @package  Arcanedev\Moduly\Tests\Commands
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class DisableCommandTest extends CommandTestCase
 {

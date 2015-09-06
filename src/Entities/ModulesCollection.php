@@ -4,8 +4,10 @@ use Arcanedev\Support\Collection;
 use Arcanedev\Moduly\Exceptions\ModuleNotFound;
 
 /**
- * Class ModulesCollection
- * @package Arcanedev\Moduly\Entities
+ * Class     ModulesCollection
+ *
+ * @package  Arcanedev\Moduly\Entities
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class ModulesCollection extends Collection
 {

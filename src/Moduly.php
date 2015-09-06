@@ -7,8 +7,10 @@ use Illuminate\Config\Repository as Config;
 use Illuminate\Foundation\Application;
 
 /**
- * Class Moduly
- * @package Arcanedev\Moduly
+ * Class     Moduly
+ *
+ * @package  Arcanedev\Moduly
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class Moduly implements ModulyInterface
 {

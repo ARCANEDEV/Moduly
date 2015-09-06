@@ -3,8 +3,10 @@
 use Arcanedev\Support\Laravel\PackageServiceProvider;
 
 /**
- * Class ModulyServiceProvider
- * @package Arcanedev\Moduly
+ * Class     ModulyServiceProvider
+ *
+ * @package  Arcanedev\Moduly
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class ModulyServiceProvider extends PackageServiceProvider
 {

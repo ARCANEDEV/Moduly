@@ -3,8 +3,10 @@
 use Arcanedev\Moduly\Bases\Command;
 
 /**
- * Class EnableCommand
- * @package Arcanedev\Moduly\Commands
+ * Class     EnableCommand
+ *
+ * @package  Arcanedev\Moduly\Commands
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class EnableCommand extends Command
 {

@@ -4,8 +4,10 @@ use Arcanedev\Moduly\Entities\ModulesCollection;
 use Arcanedev\Support\Collection;
 
 /**
- * Interface ModulyInterface
- * @package Arcanedev\Moduly\Contracts
+ * Interface  ModulyInterface
+ *
+ * @package   Arcanedev\Moduly\Contracts
+ * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 interface ModulyInterface
 {

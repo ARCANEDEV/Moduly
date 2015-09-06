@@ -4,8 +4,10 @@ use Arcanedev\Moduly\Bases\Command;
 use Illuminate\Console\ConfirmableTrait;
 
 /**
- * Class MigrateRefreshCommand
- * @package Arcanedev\Moduly\Commands
+ * Class     MigrateRefreshCommand
+ *
+ * @package  Arcanedev\Moduly\Commands
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class MigrateRefreshCommand extends Command
 {

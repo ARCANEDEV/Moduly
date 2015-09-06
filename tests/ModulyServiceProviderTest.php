@@ -2,6 +2,12 @@
 
 use Arcanedev\Moduly\ModulyServiceProvider;
 
+/**
+ * Class     ModulyServiceProviderTest
+ *
+ * @package  Arcanedev\Moduly\Tests
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
+ */
 class ModulyServiceProviderTest extends TestCase
 {
     /* ------------------------------------------------------------------------------------------------

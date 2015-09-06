@@ -4,8 +4,10 @@ use Arcanedev\Moduly\Moduly;
 use Illuminate\Console\Command as IlluminateCommand;
 
 /**
- * Class Command
- * @package Arcanedev\Moduly\Bases
+ * Class     Command
+ *
+ * @package  Arcanedev\Moduly\Bases
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 abstract class Command extends IlluminateCommand
 {

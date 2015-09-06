@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class Moduly
- * @package Arcanedev\Moduly\Facades
+ * Class     Moduly
+ *
+ * @package  Arcanedev\Moduly\Facades
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class Moduly extends Facade
 {

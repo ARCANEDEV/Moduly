@@ -3,9 +3,10 @@
 use Illuminate\Foundation\Application;
 
 /**
- * Trait MigrationTrait
- * @package Arcanedev\Moduly\Traits
+ * Trait     MigrationTrait
  *
+ * @package  Arcanedev\Moduly\Traits
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  * @property Application laravel
  */
 trait MigrationTrait

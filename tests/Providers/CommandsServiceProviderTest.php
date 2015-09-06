@@ -4,8 +4,10 @@ use Arcanedev\Moduly\Providers\CommandsServiceProvider;
 use Arcanedev\Moduly\Tests\TestCase;
 
 /**
- * Class CommandsServiceProviderTest
- * @package Arcanedev\Moduly\Tests\Providers
+ * Class     CommandsServiceProviderTest
+ *
+ * @package  Arcanedev\Moduly\Tests\Providers
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class CommandsServiceProviderTest extends TestCase
 {

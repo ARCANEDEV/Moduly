@@ -6,8 +6,10 @@ use Arcanedev\Moduly\Traits\MigrationTrait;
 use Illuminate\Console\ConfirmableTrait;
 
 /**
- * Class MigrateRollbackCommand
- * @package Arcanedev\Moduly\Commands
+ * Class     MigrateRollbackCommand
+ *
+ * @package  Arcanedev\Moduly\Commands
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class MigrateRollbackCommand extends Command
 {

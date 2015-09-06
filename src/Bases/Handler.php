@@ -4,8 +4,10 @@ use Arcanedev\Moduly\Moduly;
 use Illuminate\Filesystem\Filesystem;
 
 /**
- * Class Handler
- * @package Arcanedev\Moduly\Bases
+ * Class     Handler
+ *
+ * @package  Arcanedev\Moduly\Bases
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 abstract class Handler
 {

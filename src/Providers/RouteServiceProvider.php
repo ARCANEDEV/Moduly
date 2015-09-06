@@ -3,8 +3,10 @@
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as BaseRouteServiceProvider;
 
 /**
- * Class RouteServiceProvider
- * @package Arcanedev\Moduly\Providers
+ * Class     RouteServiceProvider
+ *
+ * @package  Arcanedev\Moduly\Providers
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 abstract class RouteServiceProvider extends BaseRouteServiceProvider
 {

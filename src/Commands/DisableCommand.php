@@ -3,8 +3,10 @@
 use Arcanedev\Moduly\Bases\Command;
 
 /**
- * Class DisableCommand
- * @package Arcanedev\Moduly\Commands
+ * Class     DisableCommand
+ *
+ * @package  Arcanedev\Moduly\Commands
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class DisableCommand extends Command
 {

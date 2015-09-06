@@ -3,8 +3,10 @@
 use Arcanedev\Moduly\Tests\CommandTestCase;
 
 /**
- * Class MigrateRollbackCommandTest
- * @package Arcanedev\Moduly\Tests\Commands
+ * Class     MigrateRollbackCommandTest
+ *
+ * @package  Arcanedev\Moduly\Tests\Commands
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class MigrateRollbackCommandTest extends CommandTestCase
 {

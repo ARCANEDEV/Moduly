@@ -7,8 +7,10 @@ use Illuminate\Database\Migrations\Migrator;
 use Illuminate\Filesystem\Filesystem;
 
 /**
- * Class MigrateResetCommand
- * @package Arcanedev\Moduly\Commands
+ * Class     MigrateResetCommand
+ *
+ * @package  Arcanedev\Moduly\Commands
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class MigrateResetCommand extends Command
 {

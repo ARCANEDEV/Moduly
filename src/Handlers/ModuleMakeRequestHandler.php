@@ -4,8 +4,10 @@ use Arcanedev\Moduly\Bases\Command;
 use Arcanedev\Moduly\Bases\Handler;
 
 /**
- * Class ModuleMakeRequestHandler
- * @package Arcanedev\Moduly\Handlers
+ * Class     ModuleMakeRequestHandler
+ *
+ * @package  Arcanedev\Moduly\Handlers
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class ModuleMakeRequestHandler extends Handler
 {

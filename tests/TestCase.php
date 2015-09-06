@@ -8,8 +8,10 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
 /**
- * Class TestCase
- * @package Arcanedev\Moduly\Tests
+ * Class     TestCase
+ *
+ * @package  Arcanedev\Moduly\Tests
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 abstract class TestCase extends BaseTestCase
 {

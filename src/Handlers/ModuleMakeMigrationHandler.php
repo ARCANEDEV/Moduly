@@ -4,8 +4,10 @@ use Arcanedev\Moduly\Bases\Command;
 use Arcanedev\Moduly\Bases\Handler;
 
 /**
- * Class ModuleMakeMigrationHandler
- * @package Arcanedev\Moduly\Handlers
+ * Class     ModuleMakeMigrationHandler
+ *
+ * @package  Arcanedev\Moduly\Handlers
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class ModuleMakeMigrationHandler extends Handler
 {

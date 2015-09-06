@@ -6,8 +6,10 @@ use Illuminate\Console\ConfirmableTrait;
 use Illuminate\Database\Migrations\Migrator;
 
 /**
- * Class MigrateCommand
- * @package Arcanedev\Moduly\Commands
+ * Class     MigrateCommand
+ *
+ * @package  Arcanedev\Moduly\Commands
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class MigrateCommand extends Command
 {

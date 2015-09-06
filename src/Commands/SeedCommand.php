@@ -4,8 +4,10 @@ use Arcanedev\Moduly\Bases\Command;
 use Arcanedev\Moduly\Moduly;
 
 /**
- * Class SeedCommand
- * @package Arcanedev\Moduly\Commands
+ * Class     SeedCommand
+ *
+ * @package  Arcanedev\Moduly\Commands
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class SeedCommand extends Command
 {

@@ -1,8 +1,10 @@
 <?php namespace Arcanedev\Moduly\Tests;
 
 /**
- * Class CommandTestCase
- * @package Arcanedev\Moduly\Tests
+ * Class     CommandTestCase
+ *
+ * @package  Arcanedev\Moduly\Tests
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 abstract class CommandTestCase extends TestCase
 {

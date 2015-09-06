@@ -3,8 +3,10 @@
 use Arcanedev\Moduly\Tests\CommandTestCase;
 
 /**
- * Class MakeCommandTest
- * @package Arcanedev\Moduly\Tests\Commands
+ * Class     MakeCommandTest
+ *
+ * @package  Arcanedev\Moduly\Tests\Commands
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class MakeCommandTest extends CommandTestCase
 {

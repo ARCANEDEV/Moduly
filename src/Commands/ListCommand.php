@@ -6,8 +6,10 @@ use Arcanedev\Moduly\Moduly;
 use Illuminate\Support\Collection;
 
 /**
- * Class ListCommand
- * @package Arcanedev\Moduly\Commands
+ * Class     ListCommand
+ *
+ * @package  Arcanedev\Moduly\Commands
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class ListCommand extends Command
 {

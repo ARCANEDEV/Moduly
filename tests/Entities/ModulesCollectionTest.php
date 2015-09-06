@@ -5,8 +5,10 @@ use Arcanedev\Moduly\Entities\ModulesCollection;
 use Arcanedev\Moduly\Tests\TestCase;
 
 /**
- * Class ModulesCollectionTest
- * @package Arcanedev\Moduly\Tests\Entities
+ * Class     ModulesCollectionTest
+ *
+ * @package  Arcanedev\Moduly\Tests\Entities
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class ModulesCollectionTest extends TestCase
 {

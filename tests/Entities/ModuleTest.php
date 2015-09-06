@@ -4,8 +4,10 @@ use Arcanedev\Moduly\Entities\Module;
 use Arcanedev\Moduly\Tests\TestCase;
 
 /**
- * Class ModuleTest
- * @package Arcanedev\Moduly\Tests\Entities
+ * Class     ModuleTest
+ *
+ * @package  Arcanedev\Moduly\Tests\Entities
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class ModuleTest extends TestCase
 {

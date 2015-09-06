@@ -5,8 +5,10 @@ use Illuminate\Database\Migrations\Migrator;
 use Illuminate\Database\Migrations\DatabaseMigrationRepository;
 
 /**
- * Class MigrationServiceProvider
- * @package Arcanedev\Moduly\Providers
+ * Class     MigrationServiceProvider
+ *
+ * @package  Arcanedev\Moduly\Providers
+ * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class MigrationServiceProvider extends ServiceProvider
 {
