@@ -79,7 +79,7 @@ class ModuleMakeHandler extends Handler
      */
     public function getFolders()
     {
-        return array_values(config('moduly.modules.folders', []));
+        return array_values(config('moduly.folders', []));
     }
 
     /* ------------------------------------------------------------------------------------------------
@@ -134,16 +134,18 @@ class ModuleMakeHandler extends Handler
      */
     protected function generateFolders()
     {
+        // Create the base folder
         $baseFolder = $this->moduly->getBasePath();
 
         if ( ! $this->finder->isDirectory($baseFolder)) {
             $this->finder->makeDirectory($baseFolder);
         }
 
+        // Create the module folder
         $path = $this->getModulePath($this->slug);
-
         $this->finder->makeDirectory($path);
 
+        // Create module sub-folders
         foreach ($this->getFolders() as $folder) {
             $this->finder->makeDirectory($path . $folder, 0755, true);
         }

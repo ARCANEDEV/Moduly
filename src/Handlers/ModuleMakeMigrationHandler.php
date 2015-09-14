@@ -104,7 +104,7 @@ class ModuleMakeMigrationHandler extends Handler
         $this->command->info("Created Module Migration: [$this->moduleName] " . $this->getFilename());
 
         chdir(app('path.base'));
-        exec('composer dump-autoload');
+        exec('composer dump-autoload --quiet');
     }
 
     /* ------------------------------------------------------------------------------------------------
