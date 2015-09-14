@@ -46,13 +46,18 @@ class Moduly implements ModulyInterface
      |  Constructor
      | ------------------------------------------------------------------------------------------------
      */
-    public function __construct(Application $app, Config $config)
+    /**
+     * Create Moduly instance.
+     *
+     * @param Application $app
+     */
+    public function __construct(Application $app)
     {
         $this->app     = $app;
-        $this->config  = $this->app['config'];
+        $this->config  = $app['config'];
         $this->modules = new ModulesCollection;
 
-        $this->setBasePath($this->config->get('moduly.modules.path'));
+        $this->setBasePath($this->config->get('moduly.path'));
     }
 
     /* ------------------------------------------------------------------------------------------------
@@ -76,7 +81,7 @@ class Moduly implements ModulyInterface
      */
     public function getNamespace()
     {
-        return $this->config->get('moduly.modules.namespace');
+        return $this->config->get('moduly.namespace');
     }
 
     /**

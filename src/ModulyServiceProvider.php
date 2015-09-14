@@ -1,6 +1,6 @@
 <?php namespace Arcanedev\Moduly;
 
-use Arcanedev\Support\Laravel\PackageServiceProvider;
+use Arcanedev\Support\PackageServiceProvider;
 
 /**
  * Class     ModulyServiceProvider
@@ -14,7 +14,18 @@ class ModulyServiceProvider extends PackageServiceProvider
      |  Properties
      | ------------------------------------------------------------------------------------------------
      */
-    /** @var string */
+    /**
+     * Vendor name.
+     *
+     * @var string
+     */
+    protected $vendor = 'arcanedev';
+
+    /**
+     * Package name.
+     *
+     * @var string
+     */
     protected $package = 'moduly';
 
     /* ------------------------------------------------------------------------------------------------
@@ -28,7 +39,7 @@ class ModulyServiceProvider extends PackageServiceProvider
      */
     public function getBasePath()
     {
-        return __DIR__ . '/..';
+        return dirname(__DIR__);
     }
 
     /* ------------------------------------------------------------------------------------------------
@@ -40,9 +51,8 @@ class ModulyServiceProvider extends PackageServiceProvider
      */
     public function register()
     {
-        $this->registerConfigs();
+        $this->registerConfig();
         $this->registerServices();
-        $this->registerFacades();
         $this->registerProviders();
 
         moduly()->register();
@@ -63,20 +73,14 @@ class ModulyServiceProvider extends PackageServiceProvider
      | ------------------------------------------------------------------------------------------------
      */
     /**
-     * Register services
+     * Register Moduly
      */
     private function registerServices()
     {
         $this->app->bind(Moduly::KEY_NAME, function($app) {
-            return new Moduly($app, $app['config']);
+            return new Moduly($app);
         });
-    }
 
-    /**
-     * Register facades
-     */
-    private function registerFacades()
-    {
         $this->addFacade('Moduly', Facades\Moduly::class);
     }
 
