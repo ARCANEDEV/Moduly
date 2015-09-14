@@ -22,7 +22,7 @@ class ModulesCollection extends Collection
      */
     private function getIgnored()
     {
-        return config('moduly.modules.ignored', []);
+        return config('moduly.ignored', []);
     }
 
     /* ------------------------------------------------------------------------------------------------
