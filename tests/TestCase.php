@@ -68,8 +68,8 @@ abstract class TestCase extends BaseTestCase
         $app['path.base'] = realpath(__DIR__ . '/../');
 
         $app['config']->set('app.debug', true);
-        $app['config']->set('moduly.modules.path', $this->getModulesFixturesPath());
-        $app['config']->set('moduly.modules.namespace', 'Arcanedev\\');
+        $app['config']->set('moduly.path', $this->getModulesFixturesPath());
+        $app['config']->set('moduly.namespace', 'Arcanedev\\');
 
         $app['config']->set('database.default', 'db-test');
         $app['config']->set('database.connections.db-test', [
