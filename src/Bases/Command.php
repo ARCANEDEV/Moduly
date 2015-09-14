@@ -1,7 +1,7 @@
 <?php namespace Arcanedev\Moduly\Bases;
 
 use Arcanedev\Moduly\Moduly;
-use Illuminate\Console\Command as IlluminateCommand;
+use Arcanedev\Support\Bases\Command as BaseCommand;
 
 /**
  * Class     Command
@@ -9,7 +9,7 @@ use Illuminate\Console\Command as IlluminateCommand;
  * @package  Arcanedev\Moduly\Bases
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-abstract class Command extends IlluminateCommand
+abstract class Command extends BaseCommand
 {
     /* ------------------------------------------------------------------------------------------------
      |  Getters & Setters
