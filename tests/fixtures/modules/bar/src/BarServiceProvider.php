@@ -1,6 +1,6 @@
 <?php namespace Arcanedev\Bar;
 
-use Arcanedev\Support\Laravel\ServiceProvider;
+use Arcanedev\Support\ServiceProvider;
 
 /**
  * Class BarServiceProvider

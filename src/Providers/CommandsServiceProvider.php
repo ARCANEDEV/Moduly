@@ -14,7 +14,7 @@ use Arcanedev\Moduly\Commands\SeedCommand;
 use Arcanedev\Moduly\Handlers\ModuleMakeHandler;
 use Arcanedev\Moduly\Handlers\ModuleMakeMigrationHandler;
 use Arcanedev\Moduly\Handlers\ModuleMakeRequestHandler;
-use Arcanedev\Support\Laravel\ServiceProvider;
+use Arcanedev\Support\ServiceProvider;
 use Closure;
 
 /**

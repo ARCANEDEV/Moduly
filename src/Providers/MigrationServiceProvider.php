@@ -1,6 +1,6 @@
 <?php namespace Arcanedev\Moduly\Providers;
 
-use Arcanedev\Support\Laravel\ServiceProvider;
+use Arcanedev\Support\ServiceProvider;
 use Illuminate\Database\Migrations\Migrator;
 use Illuminate\Database\Migrations\DatabaseMigrationRepository;
 

@@ -1,6 +1,6 @@
 <?php namespace Arcanedev\Moduly\Providers;
 
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as BaseRouteServiceProvider;
+use Arcanedev\Support\Providers\RouteServiceProvider as BaseRouteServiceProvider;
 
 /**
  * Class     RouteServiceProvider

@@ -1,6 +1,6 @@
 <?php namespace Arcanedev\Foo;
 
-use Arcanedev\Support\Laravel\ServiceProvider;
+use Arcanedev\Support\ServiceProvider;
 
 /**
  * Class FooServiceProvider
