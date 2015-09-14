@@ -6,4 +6,4 @@
  * @package  Arcanedev\Moduly\Exceptions
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-class ModuleNotFound extends \Exception {}
+class ModuleNotFound extends ModulyException {}

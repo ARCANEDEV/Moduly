@@ -1,9 +1,9 @@
 <?php namespace Arcanedev\Moduly\Exceptions;
 
 /**
- * Class     FileMissingException
+ * Class     ModulyException
  *
  * @package  Arcanedev\Moduly\Exceptions
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-class FileMissingException extends ModulyException {}
+class ModulyException extends \Exception {}
