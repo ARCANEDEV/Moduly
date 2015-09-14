@@ -3,7 +3,7 @@
 return [
     'path'      => base_path('modules'),
 
-    'namespace' => 'Arcanedev\\',
+    'namespace' => 'Modules\\',
 
     'ignored'   => ['foundation'],
 
