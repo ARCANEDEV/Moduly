@@ -46,7 +46,6 @@ class ModulyTest extends TestCase
     public function it_can_be_instantiated()
     {
         $this->assertInstanceOf(Moduly::class, $this->moduly);
-        $this->assertEquals('arcanedev.moduly', Moduly::KEY_NAME);
     }
 
     /** @test */

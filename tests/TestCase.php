@@ -1,7 +1,6 @@
 <?php namespace Arcanedev\Moduly\Tests;
 
 use Arcanedev\Moduly\Facades\Moduly as ModulyFacade;
-use Arcanedev\Moduly\Moduly;
 use Arcanedev\Moduly\ModulyServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use RecursiveDirectoryIterator;
@@ -90,7 +89,7 @@ abstract class TestCase extends BaseTestCase
      */
     public function moduly()
     {
-        return $this->app[Moduly::KEY_NAME];
+        return $this->app['arcanedev.moduly'];
     }
 
     /**

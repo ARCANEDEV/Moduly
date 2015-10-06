@@ -8,6 +8,6 @@ if ( ! function_exists('moduly')) {
      */
     function moduly()
     {
-        return app(Arcanedev\Moduly\Moduly::KEY_NAME);
+        return app('arcanedev.moduly');
     }
 }

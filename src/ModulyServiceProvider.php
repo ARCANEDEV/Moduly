@@ -1,6 +1,6 @@
 <?php namespace Arcanedev\Moduly;
 
-use Arcanedev\Support\PackageServiceProvider;
+use Arcanedev\Support\PackageServiceProvider as ServiceProvider;
 
 /**
  * Class     ModulyServiceProvider
@@ -8,7 +8,7 @@ use Arcanedev\Support\PackageServiceProvider;
  * @package  Arcanedev\Moduly
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-class ModulyServiceProvider extends PackageServiceProvider
+class ModulyServiceProvider extends ServiceProvider
 {
     /* ------------------------------------------------------------------------------------------------
      |  Properties
@@ -52,10 +52,10 @@ class ModulyServiceProvider extends PackageServiceProvider
     public function register()
     {
         $this->registerConfig();
-        $this->registerServices();
+        $this->registerModuly();
         $this->registerProviders();
 
-        moduly()->register();
+        $this->app['arcanedev.moduly']->register();
     }
 
     /**
@@ -75,9 +75,9 @@ class ModulyServiceProvider extends PackageServiceProvider
     /**
      * Register Moduly
      */
-    private function registerServices()
+    private function registerModuly()
     {
-        $this->app->bind(Moduly::KEY_NAME, function($app) {
+        $this->app->bind('arcanedev.moduly', function($app) {
             return new Moduly($app);
         });
 
